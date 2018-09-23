@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('types', 'TypeController');
+Route::resource('products', 'ProductController');
+Route::resource('providers', 'ProviderController');
+Route::resource('buys', 'BuyController');
+Route::resource('drivers', 'DriverController');
+Route::resource('sales', 'SaleController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
