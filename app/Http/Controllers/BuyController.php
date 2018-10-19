@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Buy;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\BuyStoreRequest;
+use App\Http\Requests\BuyUpdateRequest;
+
 use App\Provider;
 use App\Product;
+use App\Kardex;
+
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BuyController extends Controller
 {
@@ -27,7 +34,8 @@ class BuyController extends Controller
      */
     public function create()
     {
-        $products=Product::orderBy('name','DESC')->pluck('name','id');
+        $products=Product::orderBy('name','DESC')->where('status','PUBLIC')->pluck('name','id');
+
         $providers=Provider::orderBy('name','DESC')->pluck('name','id');
         return view('admin.buy.create', compact('products','providers'));
     }
@@ -41,8 +49,15 @@ class BuyController extends Controller
     public function store(BuyStoreRequest $request)
     {
         $buy=Buy::create($request->all());
-        return redirect()->route('buys.edit', compact('buy'))
+        if ($buy->status == 'FINISHED') 
+        {
+            return redirect()->route('registroCompra', $buy);
+        }
+        if (auth()->user()->can('buys.edit')) {
+            return redirect()->route('buys.edit', compact('buy'))
             ->with('info','Compra de producto añadido correctamente');
+        }
+        return back()->with('info','Compra  realizada correctamente');
     }
 
     /**
@@ -76,10 +91,14 @@ class BuyController extends Controller
      * @param  \App\Buy  $buy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buy $buy)
+    public function update(BuyUpdateRequest $request, Buy $buy)
     {
         $t=Buy::find($buy->id);
         $t->fill($request->all())->save();
+        if ($t->status == 'FINISHED') 
+        {
+            return redirect()->route('registro', $buy);
+        }
         return redirect()->route('buys.edit', compact('buy'))
             ->with('info', 'Modificado correctamente');
     }
@@ -95,4 +114,6 @@ class BuyController extends Controller
         $t=Buy::find($buy->id)->delete();
         return back()->with('info','Buy de producto eliminado correctamente');
     }
+
+
 }

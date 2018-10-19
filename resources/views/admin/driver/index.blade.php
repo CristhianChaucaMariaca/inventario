@@ -5,14 +5,16 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Lista de Tipos de productos
-					<a href="{{ route('drivers.create') }}" class="btn btn-sm btn-primary pull-right">Crear</a>
+					Lista de conductores
+					@can('drivers.create')
+					<a href="{{ route('drivers.create') }}" class="btn btn-sm btn-primary pull-right"><span class="icon-plus"></span></a>
+					@endcan
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>id</th>
+								<td width="10px">id</th>
 								<th>Nombres</th>
 								<th>Apellidos</th>
 								<th>Estado</th>
@@ -20,10 +22,11 @@
 							</tr>
 						</thead>
 						<tbody>
+							<?php $c=1; ?>
 							@foreach($drivers as $driver)
 								<tr>
 									<td>
-										{{ $driver->id}}
+										<?php echo "".$c++; ?>
 									</td>
 									<td>{{ $driver->name }}</td>
 									<td>{{ $driver->last_name }}</td>								
@@ -36,14 +39,24 @@
 											Fuera
 										@endif
 									</td>								
-									<td><a href="{{ route('drivers.show', $driver->id) }}" class="btn btn-sm btn-default">Ver</a></td>
-									<td><a href="{{ route('drivers.edit', $driver->id) }}" class="btn btn-sm btn-default">Editar</a></td>
-									<td>
+									<td width="10px">
+										@can('drivers.show')
+										<a href="{{ route('drivers.show', $driver->id) }}" class="btn btn-sm btn-default"><span class="icon-eye-plus"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('drivers.edit')
+										<a href="{{ route('drivers.edit', $driver->id) }}" class="btn btn-sm btn-default"><span class="icon-wrench"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('drivers.destroy')
 										{!! Form::open(['route'=>['drivers.destroy', $driver->id],'method'=>'DELETE']) !!}
 											<button class="btn btn-sm btn-danger">
-												Eliminar
+												<span class="icon-bin2"></span>
 											</button>
 										{!! Form::close() !!}
+										@endcan
 									</td>
 								</tr>
 							@endforeach

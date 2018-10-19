@@ -180,6 +180,12 @@ return [
 
         //Laravel Collective
         Collective\Html\HtmlServiceProvider::class,
+
+        //DomPDF
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+        //CAFFEINATED
+        Caffeinated\Shinobi\ShinobiServiceProvider::class,
     ],
 
     /*
@@ -229,9 +235,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //Laravel Collective
         'Form'=> Collective\Html\FormFacade::class,
         'Html'=> Collective\Html\HtmlFacade::class,
 
+        //DOMPDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

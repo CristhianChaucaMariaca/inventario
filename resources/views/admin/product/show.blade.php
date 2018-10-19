@@ -8,6 +8,7 @@
 					<h3>{{ $product->name }}</h3>
 				</div>
 				<div class="panel-body">
+					<p><strong>Typo de producto: </strong>{{ $product->type->name }}</p>
 					<p><strong>Unidad de Medida: </strong> {{ $product->unidad }}</p>
 					<p><strong>Stock minimo: </strong>{{ $product->min }}</p>
 					<p><strong>Estado: </strong>

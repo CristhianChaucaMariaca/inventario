@@ -5,8 +5,17 @@ namespace App\Http\Controllers;
 use App\Sale;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\SaleStoreRequest;
+use App\Http\Requests\SaleUpdateRequest;
+
 use App\Product;
 use App\Driver;
+use App\Kardex;
+
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SaleController extends Controller
 {
@@ -28,8 +37,8 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $products=Product::orderBy('name','DESC')->pluck('name','id');
-        $drivers=Driver::orderBy('name','DESC')->where('status','FREE')->pluck('name','id');
+        $products=Product::orderBy('name','DESC')->where('status','PUBLIC')->pluck('name','id');
+        $drivers=Driver::orderBy('name','DESC')->where('status','FREE')->where('user_id',auth()->user()->id)->pluck('name','id');
         return view('admin.sale.create', compact('products','drivers'));
     }
 
@@ -39,11 +48,22 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaleStoreRequest $request)
     {
+        $id=Kardex::where('product_id',$request->product_id)->max('id');
+        $k=Kardex::find($id);
+        if ($request->cuantity > $k->balance || $request->cuantity < $k->product->min) {
+            return back()->with('info','La cantidad solicitada no puede ser procesada');
+        }
         $sale=Sale::create($request->all());
-        return redirect()->route('sales.edit', compact('sale'))
+        if ($sale->status == 'FINISHED') {
+            return redirect()->route('registroVenta', $sale);
+        }
+        if (auth()->user()->can('sales.edit')) {
+            return redirect()->route('sales.edit', compact('sale'))
             ->with('info','Compra de producto añadido correctamente');
+        }
+        return back()->with('info','Exportado correctamente');
     }
 
     /**
@@ -77,10 +97,13 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale $sale)
+    public function update(SaleUpdateRequest $request, Sale $sale)
     {
-        $t=Sale::find($sale->id);
-        $t->fill($request->all())->save();
+        $s=Sale::find($sale->id);
+        $s->fill($request->all())->save();
+        if ($s->status == 'FINISHED') {
+            return redirect()->route('registroVenta', $sale);
+        }
         return redirect()->route('sales.edit', compact('sale'))
             ->with('info', 'Modificado correctamente');
     }

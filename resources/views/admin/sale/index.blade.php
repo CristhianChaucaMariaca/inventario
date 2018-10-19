@@ -5,14 +5,16 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Lista de Ventas
-					<a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary pull-right">Crear</a>
+					Lista de Exportaciones
+					@can('sales.create')
+					<a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary pull-right"><span class="icon-airplane"></span></a>
+					@endcan
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>id</th>
+								<td width="10px">id</th>
 								<th>Producto</th>
 								<th>Costo</th>
 								<th>Estado</th>
@@ -26,7 +28,7 @@
 										{{ $sale->id}}
 									</td>
 									<td>{{ $sale->product->name }}</td>
-									<td>{{ $sale->cost }}</td>
+									<td>{{ $sale->unitary*$sale->cuantity }}</td>
 									@if($sale->status == 'PENDING')
 										<td>
 											Pendiente
@@ -36,20 +38,33 @@
 											Finalizado
 										</td>
 									@endif
-									<td><a href="{{ route('sales.show', $sale->id) }}" class="btn btn-sm btn-default">Ver</a></td>
-									<td><a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-sm btn-default">Editar</a></td>
-									<td>
+									<td width="10px">
+										@can('sales.show')
+										<a href="{{ route('sales.show', $sale->id) }}" class="btn btn-sm btn-default"><span class="icon-eye-plus"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('sales.edit')
+										<a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-sm btn-default"><span class="icon-wrench"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('sales.destroy')
 										{!! Form::open(['route'=>['sales.destroy', $sale->id],'method'=>'DELETE']) !!}
 											<button class="btn btn-sm btn-danger">
-												Eliminar
+												<span class="icon-bin2"></span>
 											</button>
 										{!! Form::close() !!}
+										@endcan
 									</td>
 								</tr>
 							@endforeach
 						</tbody>
 					</table>
 					{{ $sales->render() }}
+				</div>
+				<div class="panel-footer">
+					<a href="{{ route('export') }}" class="btn btn-sm btn-info">Reporte</a>
 				</div>
 			</div>
 		</div>

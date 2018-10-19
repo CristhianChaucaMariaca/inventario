@@ -11,6 +11,6 @@ class KardexTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Kardex::class, 50)->create();
     }
 }

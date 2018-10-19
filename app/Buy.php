@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Caffeinated\Shinobi\Traits\ShinobiTrait;
 
 class Buy extends Model
 {
+    use ShinobiTrait;
     protected $fillable =
     [
     	'user_id','provider_id','product_id','cuantity','cost','unitary','status',

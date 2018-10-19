@@ -11,7 +11,8 @@
 					<p><strong>Producto: </strong> {{ $buy->product->name }}</p>
 					<p><strong>Proveedor: </strong> {{ $buy->provider->name }}</p>
 					<p><strong>Cantidad adquirida: </strong>{{ $buy->cuantity }}</p>
-					<p><strong>Costo total: </strong> {{ $buy->cost }}</p>
+					<p><strong>Costo total: </strong> {{ $buy->unitary*$buy->cuantity }}</p>
+					<p><strong>Costo unitario: </strong> {{ $buy->unitary }}</p>
 					<p><strong>Estado: </strong>
 						@if($buy->status == 'PENDING')
 							Pendiente

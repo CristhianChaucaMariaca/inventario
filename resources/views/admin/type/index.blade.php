@@ -6,14 +6,16 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Lista de Tipos de productos
-					<a href="{{ route('types.create') }}" class="btn btn-sm btn-primary pull-right">Crear</a>
+					@can('types.create')
+					<a href="{{ route('types.create') }}" class="btn btn-sm btn-primary pull-right"><span class="icon-plus"></span></a>
+					@endcan
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>id</th>
-								<th>name</th>
+								<th width="10px">id</th>
+								<th>Tipo</th>
 								<th colspan="3">&nbsp;</th>
 							</tr>
 						</thead>
@@ -24,14 +26,24 @@
 										{{ $type->id}}
 									</td>
 									<td>{{ $type->name }}</td>
-									<td><a href="{{ route('types.show', $type->id) }}" class="btn btn-sm btn-default">Ver</a></td>
-									<td><a href="{{ route('types.edit', $type->id) }}" class="btn btn-sm btn-default">Editar</a></td>
-									<td>
+									<td width="10px">
+										@can('types.show')
+										<a href="{{ route('types.show', $type->id) }}" class="btn btn-sm btn-default"><span class="icon-eye-plus"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('types.edit')
+										<a href="{{ route('types.edit', $type->id) }}" class="btn btn-sm btn-default"><span class="icon-wrench"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('types.destroy')
 										{!! Form::open(['route'=>['types.destroy', $type->id],'method'=>'DELETE']) !!}
 											<button class="btn btn-sm btn-danger">
-												Eliminar
+												<span class="icon-bin2"></span>
 											</button>
 										{!! Form::close() !!}
+										@endcan
 									</td>
 								</tr>
 							@endforeach

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Driver;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\DriverStoreRequest;
+use App\Http\Requests\DriverUpdateRequest;
+
+
 class DriverController extends Controller
 {
     /**
@@ -14,7 +18,11 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers=Driver::orderBy('id', 'ASC')->paginate(10);
+        if (auth()->user()->isRole( 'admin' )) { 
+            $drivers=Driver::orderBy('id', 'ASC')->paginate(10);
+        }else{
+            $drivers=Driver::orderBy('id', 'ASC')->where('user_id',auth()->user()->id)->paginate(10);
+        }
         return view('admin.driver.index', compact('drivers'));
     }
 
@@ -34,11 +42,14 @@ class DriverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DriverStoreRequest $request)
     {
         $driver=Driver::create($request->all());
-        return redirect()->route('drivers.edit', compact('driver'))
+        if (auth()->user()->can(['drivers.edit'])) {
+            return redirect()->route('drivers.edit', compact('driver'))
             ->with('info','tipo de producto añadido correctamente');
+        }
+        return back()->with('info','Conductor añadido correctamente');
     }
 
     /**
@@ -70,7 +81,7 @@ class DriverController extends Controller
      * @param  \App\Driver  $driver
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Driver $driver)
+    public function update(DriverUpdateRequest $request, Driver $driver)
     {
         $d=Driver::find($driver->id);
         $d->fill($request->all())->save();

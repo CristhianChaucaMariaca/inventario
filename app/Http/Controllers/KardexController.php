@@ -4,6 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Kardex;
 use Illuminate\Http\Request;
+use App\Buy;
+use App\Sale;
+use App\Out;
+use App\In;
+
+
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
+use Barryvdh\DomPDF\Facade as PDF;
 
 class KardexController extends Controller
 {
@@ -14,7 +24,15 @@ class KardexController extends Controller
      */
     public function index()
     {
-        //
+        $kardexs=Kardex::orderBy('created_at', 'DESC')->paginate(20);
+        return view('admin.kardex.index', compact('kardexs'));
+    }
+
+    public function product($product_id){
+        $kardexs=Kardex::orderBy('id', 'DESC')
+            ->where('product_id', $product_id)
+            ->paginate(20);
+        return view('admin.kardex.index', compact('kardexs'));
     }
 
     /**
@@ -24,7 +42,7 @@ class KardexController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kardex.create');
     }
 
     /**
@@ -35,7 +53,89 @@ class KardexController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kardex=Kardex::create($request->all());
+        return redirect()->route('kardexes.edit', compact('kardex'))
+            ->with('info','Compra de producto añadido correctamente');
+    }
+    public function registro_compra(Buy $buy)
+    {
+        //$id=DB::table('kardexes')->count()->where('product_id',$buy->product_id);
+        
+        if (Kardex::where('product_id',$buy->product_id)->max('id')) {
+            $id=Kardex::where('product_id',$buy->product_id)->max('id');
+            $k=Kardex::find($id);  
+            $kardex = new Kardex;
+            $kardex->user_id=$buy->user_id;
+            $kardex->buy_id= $buy->id;
+            $kardex->product_id=$buy->product_id;
+            $kardex->balance=$k->balance+$buy->cuantity;
+            $kardex->value=$k->value+($buy->unitary*$buy->cuantity);
+            $kardex->type='INPUT';
+
+            $kardex->save();
+
+            $in= new In;
+            $in->kardex_id=$kardex->id;
+            $in->cuantity = $buy->cuantity;
+            $in->value     = $buy->unitary*$buy->cuantity;
+            $in->save();  
+        }else{
+            $kardex = new Kardex;
+            $kardex->user_id=$buy->user_id;
+            $kardex->buy_id= $buy->id;
+            $kardex->product_id=$buy->product_id;
+            $kardex->balance=$buy->cuantity;
+            $kardex->value=$buy->unitary*$buy->cuantity;
+            $kardex->type='INPUT';
+
+            $kardex->save();
+
+            $in= new In;
+            $in->kardex_id=$kardex->id;
+            $in->cuantity = $buy->cuantity;
+            $in->value     = $buy->unitary*$buy->cuantity;
+            $in->save();  
+        }
+
+        
+
+
+        if (auth()->user()->can('buys.edit')) {
+            return redirect()->route('buys.edit', $buy)
+                ->with('info', 'La compra se registro correctamente');
+        }
+        return redirect()->route('buys.create')
+            ->with('info','Campra realizada correctamente');
+    }
+    public function registroVenta(Sale $sale)
+    {
+        //$id=DB::table('kardexes')->count();
+        $id=Kardex::where('product_id',$sale->product_id)->max('id');
+        $k=Kardex::find($id);
+
+        $kardex = new Kardex;
+        $kardex->user_id=$sale->user_id;
+        $kardex->sale_id= $sale->id;
+        $kardex->product_id=$sale->product_id;
+        $kardex->balance=$k->balance-$sale->cuantity;
+        $kardex->value=$k->value-($sale->unitary*$sale->cuantity);
+        $kardex->type='OUTPUT';
+
+        $kardex->save();
+
+        $out= new Out;
+        $out->kardex_id=$kardex->id;
+        $out->cuantity = $sale->cuantity;
+        $out->value     = $sale->unitary*$sale->cuantity;
+        $out->save();
+
+
+        if (auth()->user()->can('sales.edit')) {
+            return redirect()->route('sales.edit', $sale)
+                ->with('info', 'La venta se registro correctamente');
+        }
+        return redirect()->route('sales.create')
+            ->with('info','Exportacion realizada correctamente');
     }
 
     /**
@@ -46,7 +146,7 @@ class KardexController extends Controller
      */
     public function show(Kardex $kardex)
     {
-        //
+        return view('admin.kardex.show', compact('kardex'));
     }
 
     /**
@@ -57,7 +157,9 @@ class KardexController extends Controller
      */
     public function edit(Kardex $kardex)
     {
-        //
+        $products=Product::orderBy('name','DESC')->pluck('name','id');
+        $providers=Provider::orderBy('name','DESC')->pluck('name','id');
+        return view('admin.kardex.edit', compact('kardex','products','providers'));
     }
 
     /**
@@ -69,7 +171,10 @@ class KardexController extends Controller
      */
     public function update(Request $request, Kardex $kardex)
     {
-        //
+        $t=Kardex::find($kardex->id);
+        $t->fill($request->all())->save();
+        return redirect()->route('kardexs.edit', compact('kardex'))
+            ->with('info', 'Modificado correctamente');
     }
 
     /**
@@ -80,6 +185,7 @@ class KardexController extends Controller
      */
     public function destroy(Kardex $kardex)
     {
-        //
+        $t=Kardex::find($kardex->id)->delete();
+        return back()->with('info','Kardex de producto eliminado correctamente');
     }
 }

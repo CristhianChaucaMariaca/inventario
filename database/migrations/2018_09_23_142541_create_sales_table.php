@@ -21,7 +21,6 @@ class CreateSalesTable extends Migration
             $table->integer('product_id')->unsigned();
 
             $table->integer('cuantity');
-            $table->double('cost',15,8);
             $table->double('unitary',15,8);
             $table->enum('status',['PENDING','FINISHED'])->default('PENDING');
 

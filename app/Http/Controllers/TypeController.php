@@ -6,6 +6,7 @@ use App\Type;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\TypeStoreRequest;
+use App\Http\Requests\TypeUpdateRequest;
 
 class TypeController extends Controller
 {
@@ -39,8 +40,11 @@ class TypeController extends Controller
     public function store(TypeStoreRequest $request)
     {
         $type=Type::create($request->all());
-        return redirect()->route('types.edit', compact('type'))
+        if (auth()->user()->can(['types.edit'])) {
+            return redirect()->route('types.edit', compact('type'))
             ->with('info','tipo de producto añadido correctamente');
+        }
+        return back()->with('info','El Tipo de producto fue añadido correctamente');
     }
 
     /**
@@ -72,7 +76,7 @@ class TypeController extends Controller
      * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(TypeUpdateRequest $request, Type $type)
     {
         $t=Type::find($type->id);
         $t->fill($request->all())->save();

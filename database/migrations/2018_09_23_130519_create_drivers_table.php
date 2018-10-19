@@ -16,6 +16,8 @@ class CreateDriversTable extends Migration
         Schema::create('drivers', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('user_id')->unsigned()->nullable();
+
             $table->string('name',128);
             $table->string('last_name',128);
             $table->string('phone',128);
@@ -25,6 +27,10 @@ class CreateDriversTable extends Migration
             $table->enum('status',['FREE','OCCUPIED','OUT'])->default('OUT');
 
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('no action')
+                ->onUpdate('cascade');
         });
     }
 

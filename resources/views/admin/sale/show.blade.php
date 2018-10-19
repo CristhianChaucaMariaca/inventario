@@ -5,12 +5,12 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Codigo de Venta: <h3>{{ $sale->id }}</h3>
+					Codigo de Exportación: <h3>{{ $sale->id }}</h3>
 				</div>
 				<div class="panel-body">
 					<p><strong>Producto: </strong> {{ $sale->product->name }}</p>
 					<p><strong>Cantidad adquirida: </strong>{{ $sale->cuantity }}</p>
-					<p><strong>Costo total: </strong> {{ $sale->cost }}</p>
+					<p><strong>Costo total: </strong> {{ $sale->unitary*$sale->cuantity }}</p>
 					<p><strong>Conductor: </strong> {{ $sale->driver->name }}</p>
 					<p><strong>Estado: </strong>
 						@if($sale->status == 'PENDING')

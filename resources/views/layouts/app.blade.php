@@ -12,35 +12,65 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('Font/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+          <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url('/home') }}"><sapan class="icon-home"></sapan> <span class="sr-only">(current)</span></a>
+              </li>
+                        @can('types.index')
+                        <li class="nav-item {{ request()->is('types') ? 'active' : '' }}"><a href="{{ route('types.index') }}" class="nav-link">Tipos</a></li>
+                        @endcan
+                        @can('products.index')
+                        <li class="nav-item {{ request()->is('products') ? 'active' : '' }}"><a href="{{ route('products.index') }}" class="nav-link">Productos</a></li>
+                        @endcan
+                        @can('users.index')
+                        <li class="nav-item {{ request()->is('users') ? 'active' : '' }}"><a href="{{ route('users.index') }}" class="nav-link">Usuarios</a></li>
+                        @endcan
+                        @can('roles.index')
+                        <li class="nav-item {{ request()->is('roles') ? 'active' : '' }}"><a href="{{ route('roles.index') }}" class="nav-link">Roles</a></li>
+                        @endcan
+                        @can('drivers.index')
+                        <li class="nav-item {{ request()->is('drivers') ? 'active' : '' }}"><a href="{{ route('drivers.index') }}" class="nav-link">Conductores</a></li>
+                        @endcan
+                        @can('providers.index')
+                        <li class="nav-item {{ request()->is('providers') ? 'active' : '' }}"><a href="{{ route('providers.index') }}" class="nav-link">Proveedores</a></li>
+                        @endcan
+                        @can('buys.index')
+                        <li class="nav-item {{ request()->is('buys') ? 'active' : '' }}"><a href="{{ route('buys.index') }}" class="nav-link">Compras</a></li>
+                        @endcan
+                        @can('sales.index')
+                        <li class="nav-item {{ request()->is('sales') ? 'active' : '' }}"><a href="{{ route('sales.index') }}" class="nav-link">Exportaciones</a></li>
+                        @endcan
+                        @can('kardexes.index')
+                        <li class="nav-item {{ request()->is('kardexes') ? 'active' : '' }}"><a href="{{ route('kardexes.index') }}" class="nav-link">Kardex</a></li>
+                        @endcan
+                        @can('reports.index')
+                        <li class="nav-item {{ request()->is('reports') ? 'active' : '' }}"><a href="{{ route('reports') }}" class="nav-link"><span class="icon-file-pdf"></span></a></li>
+                        @endcan
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -48,7 +78,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <span class="icon-user"></span>{{ Auth::user()->name }}
                                 </a>
 
                                 <ul class="dropdown-menu">
@@ -67,8 +97,7 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
-            </div>
+          </div>
         </nav>
         @if(session('info'))
             <div class="container">

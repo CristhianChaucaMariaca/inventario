@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Type;
+use App\Kardex;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
@@ -36,11 +39,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
         $product =Product::create($request->all());
-        return redirect()->route('products.edit', compact('product'))
+        if (auth()->user()->can(['products.edit'])) {
+            return redirect()->route('products.edit', compact('product'))
             ->with('info','Producto añadido correctamente');
+        }
+        return back()->with('info','Producto añadido correctamente');
     }
 
     /**
@@ -73,7 +79,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
         $pro=Product::find($product->id);
         $pro->fill($request->all())->save();

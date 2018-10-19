@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Caffeinated\Shinobi\Traits\ShinobiTrait;
 
 class Sale extends Model
 {
+    use ShinobiTrait;
     protected $fillable=[
-    	'user_id','driver_id','product_id','cuantity','cost','unitary','status'
+    	'user_id','driver_id','product_id','cuantity','unitary','status'
     ];
     public function driver(){
     	return $this->belongsTo(Driver::class);

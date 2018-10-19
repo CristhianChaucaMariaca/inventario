@@ -9,15 +9,11 @@
 </div>
 <div class="form-group">
 	{{ Form::label('cuantity', 'Ingrese cantidad') }}
-	{{ Form::text('cuantity', null, ['class'=>'form-control', 'placeholder'=>'Cantidad', 'id'=>'cuantity']) }}
-</div>
-<div class="form-group">
-	{{ Form::label('cost', 'Ingrese el costo total') }}
-	{{ Form::text('cost', null, ['class'=>'form-control', 'placeholder'=>'Costo', 'id'=>'cost']) }}
+	{{ Form::number('cuantity', null, ['class'=>'form-control', 'placeholder'=>'Cantidad', 'id'=>'cuantity']) }}
 </div>
 <div class="form-group">
 	{{ Form::label('unitary', 'Costo unitario') }}
-	{{ Form::text('unitary', null, ['class'=>'form-control', 'placeholder'=>'Unitario', 'id'=>'unitary']) }}
+	{{ Form::number('unitary', null, ['class'=>'form-control', 'placeholder'=>'Unitario', 'id'=>'unitary']) }}
 </div>
 <div class="form-group">
 	{{ Form::label('status', 'Estado') }}

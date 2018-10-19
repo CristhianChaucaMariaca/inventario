@@ -1,3 +1,4 @@
+{{ Form::hidden('user_id', auth()->user()->id) }}
 <div class="form-group">
 	{{ Form::label('name', 'Ingrese nombre') }}
 	{{ Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Nombre', 'id'=>'name']) }}
@@ -16,11 +17,11 @@
 </div>
 <div class="form-group">
 	{{ Form::label('ci', 'Cedula de identidad') }}
-	{{ Form::text('ci', null, ['class'=>'form-control', 'placeholder'=>'Cedula', 'id'=>'ci']) }}
+	{{ Form::number('ci', null, ['class'=>'form-control', 'placeholder'=>'Cedula', 'id'=>'ci']) }}
 </div>
 <div class="form-group">
 	{{ Form::label('license', 'Licencia de conducir') }}
-	{{ Form::text('license', null, ['class'=>'form-control', 'placeholder'=>'Licencia', 'id'=>'license']) }}
+	{{ Form::number('license', null, ['class'=>'form-control', 'placeholder'=>'Licencia', 'id'=>'license']) }}
 </div>
 <div class="form-group">
 	{{ Form::label('status', 'Estado del conductor') }}

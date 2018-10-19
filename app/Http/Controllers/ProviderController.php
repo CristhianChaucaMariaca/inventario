@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Provider;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\ProviderStoreRequest;
+use App\Http\Requests\ProviderUpdateRequest;
+
 class ProviderController extends Controller
 {
     /**
@@ -14,7 +17,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers=Provider::orderBy('id','ASC')->paginate(10);
+        $providers=Provider::orderBy('id','DESC')->paginate(10);
         return view('admin.provider.index',compact('providers'));
     }
 
@@ -34,11 +37,14 @@ class ProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProviderStoreRequest $request)
     {
         $provider =Provider::create($request->all());
-        return redirect()->route('providers.edit', compact('provider'))
+        if (auth()->user()->can(['providers.edit'])) {
+            return redirect()->route('providers.edit', compact('provider'))
             ->with('info','Proveedor añadido correctamente');
+        }
+        return back()->with('info','Proveedor añadido correctamente');
     }
 
     /**
@@ -70,7 +76,7 @@ class ProviderController extends Controller
      * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provider $provider)
+    public function update(ProviderUpdateRequest $request, Provider $provider)
     {
         $pro=Provider::find($provider->id);
         $pro->fill($request->all())->save();
