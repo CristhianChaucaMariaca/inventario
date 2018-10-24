@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
 
             $table->integer('type_id')->unsigned();
             $table->string('name',128)->unique();
-            $table->string('unidad',128);
             $table->integer('min');//Minimo de Strock Se debe modificar para que la cantidad acepte decimales
             $table->enum('status', ['PUBLIC','PRIVATE'])->default('PUBLIC');
 

@@ -26,7 +26,6 @@ class ProductStoreRequest extends FormRequest
         return [
             'type_id'=>'required',
             'name'=>'required|unique:products,name',
-            'unidad'=>'required',
             'min'=>'required',
             'status'=>'required',
         ];

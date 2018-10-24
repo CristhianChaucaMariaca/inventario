@@ -7,10 +7,6 @@
 	{{ Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Nombre', 'id'=>'name']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('unidad', 'Unidad de medida') }}
-	{{ Form::text('unidad', null, ['class'=>'form-control', 'placeholder'=>'unidad', 'id'=>'unidad']) }}
-</div>
-<div class="form-group">
 	{{ Form::label('min', 'Cantidad minima en stock') }}
 	{{ Form::number('min', null, ['class'=>'form-control', 'placeholder'=>'minimo', 'id'=>'min']) }}
 </div>

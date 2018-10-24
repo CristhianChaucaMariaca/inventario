@@ -5,11 +5,12 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Detalle de tipo de producto
+					Crear medida de producto
 				</div>
 				<div class="panel-body">
-					<p><strong><span class="icon-phone"></span></strong> {{ $type->name }}</p>
-					<p><strong><span class="icon-location"></span></strong> {{ $type->measure->no }}</p>
+					{!! Form::open(['route'=>'measures.store']) !!}
+						@include('admin.measure.partials.form')
+					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>

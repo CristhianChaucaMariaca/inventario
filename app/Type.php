@@ -10,6 +10,10 @@ class Type extends Model
 {
 	use ShinobiTrait;
     protected $fillable=[
-    	'name',
+    	'measure_id','name',
     ];
+
+    public function measure(){
+    	return $this->belongsTo(Measure::class);
+    }
 }

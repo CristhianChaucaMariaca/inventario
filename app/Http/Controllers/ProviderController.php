@@ -15,9 +15,12 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $providers=Provider::orderBy('id','DESC')->paginate(10);
+        $name=$request->get('name');
+        $providers=Provider::orderBy('id','DESC')
+            ->name($name)
+            ->paginate(10);
         return view('admin.provider.index',compact('providers'));
     }
 

@@ -39,6 +39,9 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{{ url('/home') }}"><sapan class="icon-home"></sapan> <span class="sr-only">(current)</span></a>
               </li>
+                        @can('measures.index')
+                        <li class="nav-item {{ request()->is('measures') ? 'active' : '' }}"><a href="{{ route('measures.index') }}" class="nav-link">Medidas</a></li>
+                        @endcan
                         @can('types.index')
                         <li class="nav-item {{ request()->is('types') ? 'active' : '' }}"><a href="{{ route('types.index') }}" class="nav-link">Tipos</a></li>
                         @endcan

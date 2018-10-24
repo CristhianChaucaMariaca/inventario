@@ -16,9 +16,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products=Product::orderBy('id','DESC')->paginate(10);
+        $name=$request->get('name');
+        $products=Product::orderBy('id','DESC')
+            ->name($name)
+            ->paginate(10);
         return view('admin.product.index', compact('products'));
     }
 

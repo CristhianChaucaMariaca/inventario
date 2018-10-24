@@ -5,11 +5,11 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Detalle de tipo de producto
+					Detalle de medida
 				</div>
 				<div class="panel-body">
-					<p><strong><span class="icon-phone"></span></strong> {{ $type->name }}</p>
-					<p><strong><span class="icon-location"></span></strong> {{ $type->measure->no }}</p>
+					<p><strong><span class="icon-phone"></span></strong> {{ $measure->name }}</p>
+					<p><strong><span class="icon-location"></span></strong> {{ $measure->no }}</p>
 				</div>
 			</div>
 		</div>

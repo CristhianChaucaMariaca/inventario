@@ -215,6 +215,29 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('types/{type}/edit', 'TypeController@edit')->name('types.edit')
 		->middleware('permission:types.edit');
 
+	//Measures
+
+	Route::get('measures', 'MeasureController@index')->name('measures.index')
+		->middleware('permission:measures.index');
+
+	Route::post('measures/store', 'MeasureController@store')->name('measures.store')
+		->middleware('permission:measures.create');
+		
+	Route::get('measures/create', 'MeasureController@create')->name('measures.create')
+		->middleware('permission:measures.create');
+
+	Route::put('measures/{measure}', 'MeasureController@update')->name('measures.update')
+		->middleware('permission:measures.edit');
+
+	Route::get('measures/{measure}', 'MeasureController@show')->name('measures.show')
+		->middleware('permission:measures.show');
+
+	Route::delete('measures/{measure}', 'MeasureController@destroy')->name('measures.destroy')
+		->middleware('permission:measures.destroy');
+
+	Route::get('measures/{measure}/edit', 'MeasureController@edit')->name('measures.edit')
+		->middleware('permission:measures.edit');
+
 	//Kardex
 
 	Route::get('kardexes', 'KardexController@index')->name('kardexes.index')

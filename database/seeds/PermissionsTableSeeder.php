@@ -225,6 +225,33 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Eliminar cualquier tipo de producto del sistema',
         ]);
 
+        //Measures
+        Permission::create([
+            'name'          => 'Navegar medidas',
+            'slug'          => 'measures.index',
+            'description'   => 'Listado de todas las medidas del sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Ver detalle de medida',
+            'slug'          => 'measures.show',
+            'description'   => 'Ver en detalle cada medida del sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Edición de medida',
+            'slug'          => 'measures.edit',
+            'description'   => 'Editar caulquier dato de una medida del sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Crear medida',
+            'slug'          => 'measures.create',
+            'description'   => 'crear medida en el sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Eliminar medida',
+            'slug'          => 'measures.destroy',
+            'description'   => 'Eliminar cualquier medida del sistema',
+        ]);
+
         //Kardex
         Permission::create([
             'name'          => 'Navegar kardex',

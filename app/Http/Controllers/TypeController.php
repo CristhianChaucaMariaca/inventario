@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Type;
+use App\Measure;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\TypeStoreRequest;
@@ -28,7 +29,8 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.type.create');
+        $measures=Measure::orderBy('no','DESC')->pluck('no','id');
+        return view('admin.type.create', compact('measures'));
     }
 
     /**
@@ -66,7 +68,8 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        return view('admin.type.edit', compact('type'));
+        $measures=Measure::orderBy('no','DESC')->pluck('no','id');
+        return view('admin.type.edit', compact('type','measures'));
     }
 
     /**

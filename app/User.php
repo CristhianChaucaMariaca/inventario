@@ -36,4 +36,11 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsToMany(Role::class);
     }
+
+    //Scopes
+    public function scopeName($query,$name){
+        if ($name) {
+            return $query->where('name','LIKE',"%$name%");
+        }
+    }
 }

@@ -4,6 +4,23 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
+				<div class="panel-body">
+					{{ Form::open(['route'=>'drivers.index','method'=>'GET','class'=>'form-inline pull-right']) }}
+						
+						<div class="form-group">
+							{{ Form::text('name',null,['class'=>'form-control','placeholder'=>'Nombre de conductor']) }}
+						</div>
+						<div class="form-group">
+							{{ Form::text('last_name',null,['class'=>'form-control','placeholder'=>'Apellido de conductor']) }}
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary"><span class="icon-search"></span></button>
+						</div>
+
+					{{ Form::close() }}
+				</div>
+			</div>
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					Lista de conductores
 					@can('drivers.create')

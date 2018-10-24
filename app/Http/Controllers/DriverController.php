@@ -16,13 +16,15 @@ class DriverController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (auth()->user()->isRole( 'admin' )) { 
-            $drivers=Driver::orderBy('id', 'ASC')->paginate(10);
-        }else{
-            $drivers=Driver::orderBy('id', 'ASC')->where('user_id',auth()->user()->id)->paginate(10);
-        }
+        $name=$request->get('name');
+        $last_name=$request->get('last_name');
+        $drivers=Driver::orderBy('id', 'ASC')
+            ->name($name)
+            ->last_name($last_name)
+            ->paginate(10);
+
         return view('admin.driver.index', compact('drivers'));
     }
 

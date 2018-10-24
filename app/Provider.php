@@ -11,4 +11,11 @@ class Provider extends Model
     protected $fillable=[
     	'name','address','phone',
     ];
+
+    //Scopes
+    public function scopeName($query,$name){
+    	if ($name) {
+    		return $query->where('name','LIKE',"%$name%");
+    	}
+    }
 }

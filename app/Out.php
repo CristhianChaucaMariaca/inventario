@@ -10,8 +10,4 @@ class Out extends Model
 	[
 		'kardex_id','cuantity','value'
 	];
-    public function kardex()
-    {
-    	return $this->belongsTo(Kardex::class);
-    }
 }

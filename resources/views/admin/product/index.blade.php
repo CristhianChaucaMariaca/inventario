@@ -4,6 +4,20 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
+				<div class="panel-body">
+					{{ Form::open(['route'=>'products.index','method'=>'GET','class'=>'form-inline pull-right']) }}
+
+						<div class="form-group">
+							{{ Form::text('name', null, ['class'=>'form-control','placeholder'=>'Nombre de producto']) }}
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary"><span class="icon-search"></span></button>
+						</div>
+
+					{{ Form::close() }}
+				</div>
+			</div>
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					Lista de productos
 					@can('products.create')
@@ -29,7 +43,7 @@
 										<?php echo $c++; ?>
 									</td>
 									<td>{{ $product->name }}</td>
-									<td>{{ $product->unidad }}</td>
+									<td>{{ $product->type->measure->no }}</td>
 										@if($product->status == 'PUBLIC')
 											<td>
 												<span class="icon-unlocked text-primary"></span>

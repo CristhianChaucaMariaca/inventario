@@ -23,6 +23,15 @@ class Driver extends Model
     }
 
     //Scope
+    public function scopeName($query,$name){
+        if ($name) {
+            return $query->where('name','LIKE',"%$name%");
+        }
+    }
 
-    
+    public function scopeLast_name($query,$last_name){
+        if ($last_name) {
+            return $query->where('last_name','LIKE',"%$last_name%");
+        }
+    }
 }

@@ -51,6 +51,18 @@
                             </div>
                         </div>
                         @endcan
+                        @can('measures.index')
+                        <div class="col-md-4">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-header"><h1 class="icon-price-tag text-center text-center"></h1></div>
+                                <div class="card-body text-primary">
+                                    <div class="card-text">
+                                        <a href="{{ route('measures.index') }}" class="btn btn-dark btn-block" style="margin: 1px">Medidas de productos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endcan
                         @can('products.index')
                         <div class="col-md-4">
                             <div class="card border-secondary mb-3">

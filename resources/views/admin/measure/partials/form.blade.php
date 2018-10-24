@@ -3,8 +3,8 @@
 	{{ Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Nombre', 'id'=>'name']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('measure_id','Seleccione la unidad de medida') }}
-	{{ Form::select('measure_id', $measures, null,['class'=>'form-control']) }}
+	{{ Form::label('no', 'Ingrese nomenclatura') }}
+	{{ Form::text('no', null, ['class'=>'form-control', 'placeholder'=>'Nomenclatura', 'id'=>'no']) }}
 </div>
 <div class="form-group">
 	{{ Form::submit('Guardar', ['class'=>'btn btn-sm btn-primary']) }}

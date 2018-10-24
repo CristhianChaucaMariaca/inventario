@@ -26,7 +26,6 @@ class ProductUpdateRequest extends FormRequest
         return [
             'type_id'=>'required',
             'name'=>'required',
-            'unidad'=>'required',
             'min'=>'required',
             'status'=>'required',
         ];
