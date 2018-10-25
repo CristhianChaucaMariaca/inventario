@@ -31,10 +31,20 @@ class ReportController extends Controller
         return $pdf->download('Historial-de-exportaciones.pdf');
     }
 
+    public function venta(Sale $sale){
+        $pdf=PDF::loadView('admin.report.export',compact('sale'));
+        return $pdf->download('Exportacion.pdf');
+    }
+
     public function report_compra(){
         $buys=Buy::orderBy('created_at','DESC')->get();
         $pdf=PDF::loadView('admin.report.buys',compact('buys'));
         return $pdf->download('Historial-de-Compras.pdf');
+    }
+
+    public function buy(Buy $buy){
+        $pdf=PDF::loadView('admin.report.buy',compact('buy'));
+        return $pdf->download('compra.pdf');
     }
 
     public function drivers(){
@@ -47,6 +57,11 @@ class ReportController extends Controller
         $products=Product::orderBy('created_at','DESC')->get();
         $pdf=PDF::loadView('admin.report.products',compact('products'));
         return $pdf->download('Lista_de_Productos.pdf');
+    }
+
+    public function product(Product $product){
+        $pdf=PDF::loadView('admin.report.product',compact('product'));
+        return $pdf->download('producto.pdf');
     }
 
     public function providers(){

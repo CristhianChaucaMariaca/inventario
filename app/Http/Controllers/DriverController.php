@@ -100,6 +100,6 @@ class DriverController extends Controller
     public function destroy(Driver $driver)
     {
         $d=Driver::find($driver->id)->delete();
-        return back()->with('info','Tipo de producto eliminado correctamente');
+        return back()->with('danger','Tipo de producto eliminado correctamente');
     }
 }

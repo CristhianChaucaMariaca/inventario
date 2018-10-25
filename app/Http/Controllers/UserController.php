@@ -97,6 +97,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return back()->with('info','Usuario eliminado correctamente');
+        return back()->with('danger','Usuario eliminado correctamente');
     }
 }

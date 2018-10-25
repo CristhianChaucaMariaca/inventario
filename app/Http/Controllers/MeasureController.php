@@ -89,6 +89,6 @@ class MeasureController extends Controller
     public function destroy(Measure $measure)
     {
         $measure->delete();
-        return back()->with('info','Medida de producto eliminado correctamente');
+        return back()->with('danger','Medida de producto eliminado correctamente');
     }
 }

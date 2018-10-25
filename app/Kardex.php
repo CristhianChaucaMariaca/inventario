@@ -26,9 +26,9 @@ class Kardex extends Model
     	return $this->belongsTo(Buy::class);
     }
     public function in(){
-        return $this->belongsTo(In::class);
+        return $this->hasOne(In::class);
     }
     public function output(){
-        return $this->belongsTo(Out::class);
+        return $this->hasOne(Out::class);
     }
 }

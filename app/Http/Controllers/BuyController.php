@@ -112,7 +112,7 @@ class BuyController extends Controller
     public function destroy(Buy $buy)
     {
         $t=Buy::find($buy->id)->delete();
-        return back()->with('info','Buy de producto eliminado correctamente');
+        return back()->with('danger','Buy de producto eliminado correctamente');
     }
 
 

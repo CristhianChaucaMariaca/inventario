@@ -117,6 +117,6 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         $t=Sale::find($sale->id)->delete();
-        return back()->with('info','Sale de producto eliminado correctamente');
+        return back()->with('danger','Sale de producto eliminado correctamente');
     }
 }

@@ -96,6 +96,6 @@ class ProviderController extends Controller
     public function destroy(Provider $provider)
     {
         $pro=Provider::find($provider->id)->delete();
-        return back()->with('info','Proveedor Eliminado correctamente');
+        return back()->with('danger','Proveedor Eliminado correctamente');
     }
 }

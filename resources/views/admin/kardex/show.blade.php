@@ -11,12 +11,12 @@
 					@if($kardex->type == 'INPUT')
 						<p><strong>Producto: </strong> {{ $kardex->buy->product->name }}</p>
 						<p><strong>Cantidad adquirida: </strong>{{ $kardex->buy->cuantity }}</p>
-						<p><strong>Costo total: </strong> {{ $kardex->buy->cost }}</p>
+						<p><strong>Costo total: </strong> {{ $kardex->in->value }}</p>
 						<p><strong>Precio unitario: </strong> {{ $kardex->buy->unitary }}</p>
 					@elseif($kardex->type == 'OUTPUT')
 						<p><strong>Producto: </strong> {{ $kardex->sale->product->name }}</p>
 						<p><strong>Cantidad adquirida: </strong>{{ $kardex->sale->cuantity }}</p>
-						<p><strong>Costo total: </strong> </p>
+						<p><strong>Costo total: </strong> {{ $kardex->output->value }} </p>
 						<p><strong>Precio unitario: </strong> {{ $kardex->sale->unitary }}</p>
 					@endif
 					<p><strong>Saldo a la fecha: </strong> {{ $kardex->balance }}</p>

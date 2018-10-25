@@ -96,6 +96,6 @@ class TypeController extends Controller
     public function destroy(Type $type)
     {
         $t=Type::find($type->id)->delete();
-        return back()->with('info','Tipo de producto eliminado correctamente');
+        return back()->with('danger','Tipo de producto eliminado correctamente');
     }
 }

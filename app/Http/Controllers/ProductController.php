@@ -99,6 +99,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $pro=Product::find($product->id)->delete();
-        return back()->with('info','Eliminado correctamente');
+        return back()->with('danger','Eliminado correctamente');
     }
 }

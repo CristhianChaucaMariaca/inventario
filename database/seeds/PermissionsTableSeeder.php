@@ -301,6 +301,11 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Crear Reporte en formato PDF de compras',
         ]);
         Permission::create([
+            'name'          =>'Reporte compra unitaria PDF',
+            'slug'          => 'reports.buypdf',
+            'description'   => 'Crear Reporte en formato PDF de compra unitaria',
+        ]);
+        Permission::create([
             'name'          =>'Reporte general conductores PDF',
             'slug'          => 'reports.drivers',
             'description'   => 'Crear Reporte en formato PDF de conductores',
@@ -319,6 +324,17 @@ class PermissionsTableSeeder extends Seeder
             'name'          =>'Reporte general usuarios PDF',
             'slug'          => 'reports.users',
             'description'   => 'Crear Reporte en formato PDF de usuarios',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte detalle venta unitaria pdf',
+            'slug'          => 'reports.venta',
+            'description'   => 'Crear Reporte en formato PDF de la venta unitaria',
+        ]);
+
+        Permission::create([
+            'name'          =>'Reporte detalle producto unitario pdf',
+            'slug'          => 'reports.product',
+            'description'   => 'Crear Reporte en formato PDF deproducto unitario',
         ]);
     }
 }

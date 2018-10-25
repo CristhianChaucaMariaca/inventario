@@ -268,8 +268,14 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('export', 'ReportController@report_venta')->name('export')
 		->middleware('permission:reports.export');
 
+	Route::get('venta/{sale}','ReportController@venta')->name('venta')
+		->middleware('permission:reports.venta');
+
 	Route::get('buy', 'ReportController@report_compra')->name('buyreport')
 		->middleware('permission:reports.buyreport');
+
+	Route::get('buypdf/{buy}', 'ReportController@buy')->name('buypdf')
+		->middleware('permission:reports.buypdf');
 
 	Route::get('Kardexs', 'ReportController@report')->name('kardexs')
 		->middleware('permission:reports.kardexes');
@@ -279,6 +285,9 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('products_pdf', 'ReportController@products')->name('products_pdf')
 		->middleware('permission:reports.products');
+	
+	Route::get('product_pdf/{product}', 'ReportController@product')->name('product_pdf')
+		->middleware('permission:reports.product');
 
 	Route::get('providers_pdf', 'ReportController@providers')->name('providers_pdf')
 		->middleware('permission:reports.providers');

@@ -29,7 +29,7 @@ class AddMeasuresidToTypes extends Migration
     public function down()
     {
         Schema::table('types',function(Blueprint $table){
-            $table->dropColumn('measure_id');
+            $table->dropForeign('types_measure_id_foreign');
         });
     }
 }

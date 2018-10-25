@@ -5,7 +5,11 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>{{ $product->name }}</h3>
+					<h3>{{ $product->name }}
+						@can('reports.product')
+							<a href="{{ route('product_pdf',$product) }}" class="btn btn-default pull-right"><span class="icon-file-pdf"></span></a>
+						@endcan
+					</h3>
 				</div>
 				<div class="panel-body">
 					<p><strong>Typo de producto: </strong>{{ $product->type->name }}</p>

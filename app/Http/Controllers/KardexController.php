@@ -186,6 +186,6 @@ class KardexController extends Controller
     public function destroy(Kardex $kardex)
     {
         $t=Kardex::find($kardex->id)->delete();
-        return back()->with('info','Kardex de producto eliminado correctamente');
+        return back()->with('danger','Kardex de producto eliminado correctamente');
     }
 }
