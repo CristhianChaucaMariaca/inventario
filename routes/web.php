@@ -294,4 +294,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('users_pdf', 'ReportController@users')->name('users_pdf')
 		->middleware('permission:reports.users');
+
+	Route::get('detalleprovider/{provider}','ReportController@provider')->name('detalleprovider')
+		->middleware('permission:reports.provider');
 });

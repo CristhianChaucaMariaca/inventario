@@ -55,7 +55,7 @@ class KardexController extends Controller
     {
         $kardex=Kardex::create($request->all());
         return redirect()->route('kardexes.edit', compact('kardex'))
-            ->with('info','Compra de producto añadido correctamente');
+            ->with('info','Registrado en kardex correctamente');
     }
     public function registro_compra(Buy $buy)
     {

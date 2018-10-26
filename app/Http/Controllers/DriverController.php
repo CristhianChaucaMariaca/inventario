@@ -49,7 +49,7 @@ class DriverController extends Controller
         $driver=Driver::create($request->all());
         if (auth()->user()->can(['drivers.edit'])) {
             return redirect()->route('drivers.edit', compact('driver'))
-            ->with('info','tipo de producto añadido correctamente');
+            ->with('info','Conductor añadido correctamente');
         }
         return back()->with('info','Conductor añadido correctamente');
     }

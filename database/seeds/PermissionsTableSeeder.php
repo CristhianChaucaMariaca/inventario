@@ -336,5 +336,11 @@ class PermissionsTableSeeder extends Seeder
             'slug'          => 'reports.product',
             'description'   => 'Crear Reporte en formato PDF deproducto unitario',
         ]);
+
+        Permission::create([
+            'name'          =>'Reporte detallado de proveedor pdf',
+            'slug'          => 'reports.provider',
+            'description'   => 'Crea un reporte detallado de un proveedor en formato pdf',
+        ]);
     }
 }
