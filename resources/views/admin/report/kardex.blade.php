@@ -1,15 +1,17 @@
-@extends('layouts.app')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>Codigo de registro:  {{ $kardex->id }}
-						@can('reports.kardex')
-							<a href="{{ route('detallekardex',$kardex) }}" class="btn btn-default pull-right"><span class="icon-file-pdf"></span></a>
-						@endcan
-					</h3>
+					Codigo de registro: <h3>{{ $kardex->id }}</h3>
 				</div>
 				<div class="panel-body">
 					@if($kardex->type == 'INPUT')
@@ -40,4 +42,5 @@
 		</div>
 	</div>
 </div>
-@endsection
+</body>
+</html>

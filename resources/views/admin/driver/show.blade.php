@@ -5,7 +5,11 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>{{ $driver->name.' '.$driver->last_name }}</h3>
+					<h3>{{ $driver->name.' '.$driver->last_name }}
+					@can('reports.driver')
+						<a href="{{ route('detalledriver',$driver) }}" class="btn btn-default pull-right"><span class="icon-file-pdf"></span></a>
+					@endcan
+					</h3>
 				</div>
 				<div class="panel-body">
 					<p><strong><span class="icon-phone"></span></strong> {{ $driver->phone }}</p>
@@ -31,6 +35,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading text-center">
 					Lista de Exportaciones de <strong><span class="text-info">{{ $driver->name.' '.$driver->last_name }}</span></strong>
+					<a href="{{route('exportsdriver',$driver)}}" class="btn btn-default pull right"><span class="icon-file-pdf"></span></a>
 				</div>
 				<div class="panel-body">
 					<table class="table table-hover table-striped">

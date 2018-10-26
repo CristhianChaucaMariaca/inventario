@@ -25,6 +25,12 @@ class ReportController extends Controller
         return $pdf->download('kardex.pdf');
     }
 
+    public function kardex(Kardex $kardex)
+    {
+        $pdf=PDF::loadView('admin.report.kardex',compact('kardex'));
+        return $pdf->download('detallekardex.pdf');
+    }
+
     public function report_venta(){
         $sales=Sale::orderBy('created_at','DESC')->get();
         $pdf=PDF::loadView('admin.report.exports',compact('sales'));
@@ -51,6 +57,16 @@ class ReportController extends Controller
         $drivers=Driver::orderBy('created_at','DESC')->get();
         $pdf=PDF::loadView('admin.report.drivers',compact('drivers'));
         return $pdf->download('Lista_de_conductores.pdf');
+    }
+
+    public function driver(Driver $driver){
+        $pdf=PDF::loadView('admin.report.driver',compact('driver'));
+        return $pdf->download('detalleconductor.pdf');
+    }
+
+    public function exportsdriver(Driver $driver){
+        $pdf=PDF::loadView('admin.report.exportsdriver',compact('driver'));
+        return $pdf->download('exportsconductor.pdf');
     }
 
     public function products(){

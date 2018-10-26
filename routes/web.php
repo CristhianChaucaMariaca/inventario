@@ -280,8 +280,17 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('Kardexs', 'ReportController@report')->name('kardexs')
 		->middleware('permission:reports.kardexes');
 
+	Route::get('detallekardex/{kardex}','ReportController@kardex')->name('detallekardex')
+		->middleware('permission:reports.kardex');
+
 	Route::get('drivers_pdf', 'ReportController@drivers')->name('drivers_pdf')
 		->middleware('permission:reports.drivers');
+
+	Route::get('detalledriver/{driver}','ReportController@driver')->name('detalledriver')
+		->middleware('permission:reports.driver');
+
+	Route::get('exportsdriver/{driver}','ReportController@exportsdriver')->name('exportsdriver')
+		->middleware('permission:reports.exportsdriver');
 
 	Route::get('products_pdf', 'ReportController@products')->name('products_pdf')
 		->middleware('permission:reports.products');

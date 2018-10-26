@@ -291,6 +291,11 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Crear Reporte en formato PDF de kardex',
         ]);
         Permission::create([
+           'name'          =>'Reporte detalle Kardex PDF',
+            'slug'          => 'reports.kardex',
+            'description'   => 'Crear Reporte detallado de kardex en formato PDF', 
+        ]);
+        Permission::create([
             'name'          =>'Reporte general Exportaciones PDF',
             'slug'          => 'reports.export',
             'description'   => 'Crear Reporte en formato PDF de exportaciones',
@@ -309,6 +314,16 @@ class PermissionsTableSeeder extends Seeder
             'name'          =>'Reporte general conductores PDF',
             'slug'          => 'reports.drivers',
             'description'   => 'Crear Reporte en formato PDF de conductores',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte detalle de  conductor PDF',
+            'slug'          => 'reports.driver',
+            'description'   => 'Crear Reporte detallado en formato PDF de conductor', 
+        ]);
+        Permission::create([
+            'name'          =>'Reporte de Historial de exportaciones de  conductor PDF',
+            'slug'          => 'reports.exportsdriver',
+            'description'   => 'Crear Reporte detallado en formato PDF del historial de exportaciones del conductor', 
         ]);
         Permission::create([
             'name'          =>'Reporte general productos PDF',
