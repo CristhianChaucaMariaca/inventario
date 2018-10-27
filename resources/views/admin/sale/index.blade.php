@@ -64,7 +64,9 @@
 					{{ $sales->render() }}
 				</div>
 				<div class="panel-footer">
-					<a href="{{ route('export') }}" class="btn btn-sm btn-info">Reporte</a>
+					@can('reports.export')
+					<a href="{{ route('export') }}" class="btn btn-sm btn-default"><span class="icon-file-pdf"></span></a>
+					@endcan
 				</div>
 			</div>
 		</div>

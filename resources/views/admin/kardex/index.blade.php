@@ -58,7 +58,11 @@
 					</table>
 					{{ $kardexs->render() }}
 				</div>
-				
+				<div class="panel-footer">
+					@can('reports.kerdexes')
+						<a href="{{route('kardexs')}}" class="btn btn-defult"><span class="icon-file-pdf"></span></a>
+					@endcan
+				</div>				
 			</div>
 		</div>
 	</div>

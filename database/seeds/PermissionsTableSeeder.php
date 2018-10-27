@@ -117,6 +117,33 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Eliminar cualquier conductor del sistema',
         ]);
 
+        //vehicles
+        Permission::create([
+            'name'          => 'Navegar Vehiculos',
+            'slug'          => 'vehicles.index',
+            'description'   => 'Listado de todos los Vehiculos del sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Ver detalle de vehiculo',
+            'slug'          => 'vehicles.show',
+            'description'   => 'Ver en detalle cada vehiculo del sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Edición de Vehiculos',
+            'slug'          => 'vehicles.edit',
+            'description'   => 'Editar caulquier dato de un vehiculo del sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Crear Vehiculos',
+            'slug'          => 'vehicles.create',
+            'description'   => 'crear Vehiculos en el sistema',
+        ]);
+        Permission::create([
+            'name'          => 'Eliminar conduntores',
+            'slug'          => 'vehicles.destroy',
+            'description'   => 'Eliminar cualquier vehiculo del sistema',
+        ]);
+
         //Provider
         Permission::create([
             'name'          => 'Navegar proveedores',

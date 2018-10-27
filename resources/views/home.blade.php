@@ -111,6 +111,18 @@
                             </div>
                         </div>
                         @endcan
+                        @can('vehicle.index')
+                        <div class="col-md-4">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-header"><h1 class="icon-library text-center"></h1></div>
+                                <div class="card-body text-primary">
+                                    <div class="card-text">
+                                        <a href="{{ route('vehicles.index') }}" class="btn btn-dark btn-block" style="margin: 1px">Vehiculos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endcan
                         @can('sales.index')
                         <div class="col-md-4">
                             <div class="card border-secondary mb-3">

@@ -66,7 +66,9 @@
 					{{ $buys->render() }}
 				</div>
 				<div class="panel-footer">
-					<a href="{{ route('buyreport') }}" class="btn btn-sm btn-info">Reporte de compras</a>
+					@can('reports.buyreport')
+					<a href="{{ route('buyreport') }}" class="btn btn-sm btn-default"><span class="icon-file-pdf"></span></a>
+					@endcan
 				</div>
 			</div>
 		</div>

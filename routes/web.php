@@ -123,6 +123,29 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('drivers/{driver}/edit', 'DriverController@edit')->name('drivers.edit')
 		->middleware('permission:drivers.edit');
 
+	//Drivers
+
+	Route::get('vehicles', 'VehicleController@index')->name('vehicles.index')
+		->middleware('permission:vehicles.index');
+
+	Route::post('vehicles/store', 'VehicleController@store')->name('vehicles.store')
+		->middleware('permission:vehicles.create');
+		
+	Route::get('vehicles/create', 'VehicleController@create')->name('vehicles.create')
+		->middleware('permission:vehicles.create');
+
+	Route::put('vehicles/{vehicle}', 'VehicleController@update')->name('vehicles.update')
+		->middleware('permission:vehicles.edit');
+
+	Route::get('vehicles/{vehicle}', 'VehicleController@show')->name('vehicles.show')
+		->middleware('permission:vehicles.show');
+
+	Route::delete('vehicles/{vehicle}', 'VehicleController@destroy')->name('vehicles.destroy')
+		->middleware('permission:vehicles.destroy');
+
+	Route::get('vehicles/{vehicle}/edit', 'VehicleController@edit')->name('vehicles.edit')
+		->middleware('permission:vehicles.edit');
+
 	//Sales
 
 	Route::get('sales', 'SaleController@index')->name('sales.index')

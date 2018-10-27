@@ -54,6 +54,9 @@
                         @can('roles.index')
                         <li class="nav-item {{ request()->is('roles') ? 'active' : '' }}"><a href="{{ route('roles.index') }}" class="nav-link">Roles</a></li>
                         @endcan
+                        @can('vehicles.index')
+                        <li class="nav-item {{ request()->is('vehicles') ? 'active' : '' }}"><a href="{{ route('vehicles.index') }}" class="nav-link">vehiculos</a></li>
+                        @endcan
                         @can('drivers.index')
                         <li class="nav-item {{ request()->is('drivers') ? 'active' : '' }}"><a href="{{ route('drivers.index') }}" class="nav-link">Conductores</a></li>
                         @endcan
