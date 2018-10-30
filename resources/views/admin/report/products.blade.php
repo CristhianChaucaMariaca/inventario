@@ -35,7 +35,7 @@
 									</td>
 									<td>{{ $product->type->name }}</td>
 									<td>{{ $product->name }}</td>
-									<td>{{ $product->unidad }}</td>
+									<td>{{ $product->type->measure->no }}</td>
 									<td>{{ $product->min }}</td>
 										@if($product->status == 'PUBLIC')
 											<td>

@@ -72,6 +72,11 @@
 					</table>
 					{{ $drivers->render() }}
 				</div>
+				<div class="panel-footer">
+					@can('reports.drivers')
+					<a href="{{ route('drivers_pdf') }}" class="btn btn-default"><span class="icon-file-pdf"></span></a>
+					@endcan
+				</div>
 			</div>
 		</div>
 	</div>

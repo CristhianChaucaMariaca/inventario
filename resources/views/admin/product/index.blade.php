@@ -84,6 +84,11 @@
 					</table>
 					{{ $products->render() }}
 				</div>
+				<div class="panel-footer">
+					@can('reports.products')
+					<a href="{{route('products_pdf')}}" class="btn btn-default"><span class="icon-file-pdf"></span></a>
+					@endcan
+				</div>
 			</div>
 		</div>
 	</div>

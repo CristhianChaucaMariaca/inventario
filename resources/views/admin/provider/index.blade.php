@@ -66,6 +66,11 @@
 					</table>
 					{{ $providers->render() }}
 				</div>
+				<div class="panel-footer">
+					@can('reports.providers')
+					<a href="{{ route('providers_pdf') }}" class="btn btn-default"><span class="icon-file-pdf"></span></a>
+					@endcan
+				</div>
 			</div>
 		</div>
 	</div>
