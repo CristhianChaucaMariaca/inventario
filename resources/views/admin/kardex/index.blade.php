@@ -14,8 +14,11 @@
 								<td width="10px">id</th>
 								<th>Producto</th>
 								<th>Cantidad</th>
+								<th>Costo unitario</th>
+								<th>Total (compra/exportacion)</th>
 								<th>Stock</th>
-								<th>Valor</th>
+								<th>ppp</th>
+								<th>Total</th>
 								<th>Tipo</th>
 								<th colspan="3">&nbsp;</th>
 							</tr>
@@ -31,14 +34,33 @@
 										</td>
 									@if($kardex->type == 'INPUT')
 										<td>
-										{{ $kardex->buy->cuantity }}
+										{{ $kardex->in->cuantity }}
 										</td>
 									@elseif($kardex->type == 'OUTPUT')
 										<td>
-										{{ $kardex->sale->cuantity }}
+										{{ $kardex->output->cuantity }}
+										</td>
+									@endif
+									@if($kardex->type == 'INPUT')
+										<td>
+										{{ $kardex->in->value }}
+										</td>
+									@elseif($kardex->type == 'OUTPUT')
+										<td>
+										{{ $kardex->output->value }}
+										</td>
+									@endif
+									@if($kardex->type == 'INPUT')
+										<td>
+										{{ $kardex->in->value*$kardex->in->cuantity }}
+										</td>
+									@elseif($kardex->type == 'OUTPUT')
+										<td>
+										{{ $kardex->output->value*$kardex->output->cuantity }}
 										</td>
 									@endif
 									<td>{{ $kardex->balance }}</td>
+									<td>{{ $kardex->value / $kardex->balance }}</td>
 									<td>{{ $kardex->value }}</td>
 									@if($kardex->type == 'INPUT')
 										<td>

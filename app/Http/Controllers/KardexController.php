@@ -62,6 +62,7 @@ class KardexController extends Controller
         //$id=DB::table('kardexes')->count()->where('product_id',$buy->product_id);
         
         if (Kardex::where('product_id',$buy->product_id)->max('id')) {
+            //Si el kardex esta iniciado
             $id=Kardex::where('product_id',$buy->product_id)->max('id');
             $k=Kardex::find($id);  
             $kardex = new Kardex;
@@ -77,9 +78,10 @@ class KardexController extends Controller
             $in= new In;
             $in->kardex_id=$kardex->id;
             $in->cuantity = $buy->cuantity;
-            $in->value     = $buy->unitary*$buy->cuantity;
+            $in->value     = $buy->unitary;
             $in->save();  
         }else{
+            //Si el kardex no esta iniciado
             $kardex = new Kardex;
             $kardex->user_id=$buy->user_id;
             $kardex->buy_id= $buy->id;
@@ -93,7 +95,7 @@ class KardexController extends Controller
             $in= new In;
             $in->kardex_id=$kardex->id;
             $in->cuantity = $buy->cuantity;
-            $in->value     = $buy->unitary*$buy->cuantity;
+            $in->value     = $buy->unitary;
             $in->save();  
         }
 
@@ -118,7 +120,7 @@ class KardexController extends Controller
         $kardex->sale_id= $sale->id;
         $kardex->product_id=$sale->product_id;
         $kardex->balance=$k->balance-$sale->cuantity;
-        $kardex->value=$k->value-($sale->unitary*$sale->cuantity);
+        $kardex->value=$k->value-(($k->value/$k->balance)*$sale->cuantity);
         $kardex->type='OUTPUT';
 
         $kardex->save();
@@ -126,7 +128,7 @@ class KardexController extends Controller
         $out= new Out;
         $out->kardex_id=$kardex->id;
         $out->cuantity = $sale->cuantity;
-        $out->value     = $sale->unitary*$sale->cuantity;
+        $out->value     = $sale->unitary;
         $out->save();
 
 
