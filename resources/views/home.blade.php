@@ -18,7 +18,7 @@
                         @can('users.index')
                         <div class="col-md-4">
                             <div class="card border-secondary mb-3">
-                                <div class="card-header"><h1 class="icon-user-tie text-center text-center"></h1></div>
+                                <div class="card-header"><h1 class="icon-users text-center text-center"></h1></div>
                                 <div class="card-body text-primary">
                                     <div class="card-text">
                                         <a href="{{ route('users.index') }}" class="btn btn-dark btn-block" style="margin: 1px">Usuarios</a>
