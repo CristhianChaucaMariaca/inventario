@@ -17,6 +17,7 @@
 								<td width="10px">id</th>
 								<th>producto</th>
 								<th>Proveedor</th>
+								<th>Cantidad</th>
 								<th>Costo</th>
 								<th>Estado</th>
 								<th colspan="3">&nbsp;</th>
@@ -30,6 +31,7 @@
 									</td>
 									<td>{{ $buy->product->name }}</td>
 									<td>{{ $buy->provider->name }}</td>
+									<td>{{ $buy->cuantity }}</td>
 									<td>{{ $buy->unitary*$buy->cuantity }}</td>
 									@if($buy->status == 'PENDING')
 										<td>

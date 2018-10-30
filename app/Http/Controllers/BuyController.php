@@ -97,7 +97,7 @@ class BuyController extends Controller
         $t->fill($request->all())->save();
         if ($t->status == 'FINISHED') 
         {
-            return redirect()->route('registro', $buy);
+            return redirect()->route('registroCompra', $buy);
         }
         return redirect()->route('buys.edit', compact('buy'))
             ->with('info', 'Modificado correctamente');
