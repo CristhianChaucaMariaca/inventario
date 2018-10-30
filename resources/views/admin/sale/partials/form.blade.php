@@ -8,6 +8,10 @@
 	{{ Form::select('driver_id', $drivers, null, ['class'=>'form-control']) }}
 </div>
 <div class="form-group">
+	{{ Form::label('vehicle_id', 'Selecione su vehiculo') }}
+	{{ Form::select('vehicle_id', $vehicles, null, ['class'=>'form-control']) }}
+</div>
+<div class="form-group">
 	{{ Form::label('cuantity', 'Ingrese cantidad') }}
 	{{ Form::number('cuantity', null, ['class'=>'form-control', 'placeholder'=>'Cantidad', 'id'=>'cuantity']) }}
 </div>

@@ -5,11 +5,23 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Detalle de medida
+					Detalle de vehiculo
 				</div>
 				<div class="panel-body">
-					<p><strong><span class="icon-phone"></span></strong> {{ $measure->name }}</p>
-					<p><strong><span class="icon-location"></span></strong> {{ $measure->no }}</p>
+					<p><strong>Placa</span></strong> {{ $vehicle->plaque }}</p>
+					<p><strong>Capacidad</strong> {{ $vehicle->capacity }}</p>
+					<p><strong>Color</strong> {{ $vehicle->color }}</p>
+					<p><strong>Marca</strong> {{ $vehicle->brand }}</p>
+					<p><strong>Modelo</strong> {{ $vehicle->model }}</p>
+					<p><strong>Estado: </strong>
+						@if($vehicle->status == 'FREE')
+								<span>LIBRE</span>
+						@elseif($vehicle->status == 'OCCUPIED')
+							<span>OCUPADO</span>
+						@elseif($vehicle->status == 'OUT')
+							<span>FUERA DE SERVICIO</span>
+						@endif
+					</p>
 				</div>
 			</div>
 		</div>

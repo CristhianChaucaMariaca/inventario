@@ -23,12 +23,7 @@
 	{{ Form::label('license', 'Licencia de conducir') }}
 	{{ Form::number('license', null, ['class'=>'form-control', 'placeholder'=>'Licencia', 'id'=>'license']) }}
 </div>
-<div class="form-group">
-	{{ Form::label('status', 'Estado del conductor') }}
-	<label>{{ Form::radio('status','FREE') }} LIBRE</label>
-	<label>{{ Form::radio('status','OCCUPIED') }} OCUPADO</label>
-	<label>{{ Form::radio('status','OUT') }} FUERA DE SERVICIO</label>
-</div>
+
 <div class="form-group">
 	{{ Form::submit('Guardar', ['class'=>'btn btn-sm btn-primary']) }}
 </div>

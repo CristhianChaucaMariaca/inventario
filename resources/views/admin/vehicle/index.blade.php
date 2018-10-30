@@ -17,9 +17,10 @@
 								<th width="10px">#</th>
 								<th>Placa</th>
 								<th>capacidad</th>
-								<th>color</th>
-								<th>marca</th>
-								<th>modelo</th>
+								<th>Color</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Estado</th>
 								<th colspan="3">&nbsp;</th>
 							</tr>
 						</thead>
@@ -35,6 +36,15 @@
 									<td>{{ $vehicle->color }}</td>
 									<td>{{ $vehicle->brand }}</td>
 									<td>{{ $vehicle->model }}</td>
+									<td>
+										@if($vehicle->status == 'FREE')
+											Libre
+										@elseif($vehicle->status == 'OCCUPIED')
+											Ocupado
+										@elseif($vehicle->status == 'OUT')
+											Fuera
+										@endif
+									</td>
 									<td width="10px">
 										@can('vehicles.show')
 										<a href="{{ route('vehicles.show', $vehicle->id) }}" class="btn btn-sm btn-default"><span class="icon-eye-plus"></span></a>

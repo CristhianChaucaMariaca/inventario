@@ -30,7 +30,6 @@ class DriverUpdateRequest extends FormRequest
             'address'=> 'required',
             'ci'        => 'required',
             'license'   => 'required',
-            'status'    => 'required'
         ];
     }
 }

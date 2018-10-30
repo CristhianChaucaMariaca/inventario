@@ -9,7 +9,7 @@ class Sale extends Model
 {
     use ShinobiTrait;
     protected $fillable=[
-    	'user_id','driver_id','product_id','cuantity','unitary','status'
+    	'user_id','driver_id','vehicle_id','product_id','cuantity','unitary','status'
     ];
     public function driver(){
     	return $this->belongsTo(Driver::class);
@@ -19,5 +19,9 @@ class Sale extends Model
     }
     public function product(){
     	return $this->belongsTo(Product::class);
+    }
+
+    public function vehicle(){
+        return $this->belongsTo(Vehicle::class);
     }
 }

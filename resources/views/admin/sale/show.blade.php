@@ -17,6 +17,7 @@
 					<p><strong>Cantidad adquirida: </strong>{{ $sale->cuantity }}</p>
 					<p><strong>Costo total: </strong> {{ $sale->unitary*$sale->cuantity }}</p>
 					<p><strong>Conductor: </strong> {{ $sale->driver->name }}</p>
+					<p><strong>Placa de Vehiculo: </strong> {{ $sale->vehicle->plaque }}</p>
 					<p><strong>Estado: </strong>
 						@if($sale->status == 'PENDING')
 							Pendiente

@@ -17,11 +17,14 @@
 						<p><strong>Cantidad adquirida: </strong>{{ $kardex->buy->cuantity }}</p>
 						<p><strong>Costo total: </strong> {{ $kardex->in->value }}</p>
 						<p><strong>Precio unitario: </strong> {{ $kardex->buy->unitary }}</p>
+						<p><strong>Proveedor: </strong> {{ $kardex->buy->provider->name }}</p>
 					@elseif($kardex->type == 'OUTPUT')
 						<p><strong>Producto: </strong> {{ $kardex->sale->product->name }}</p>
 						<p><strong>Cantidad adquirida: </strong>{{ $kardex->sale->cuantity }}</p>
 						<p><strong>Costo total: </strong> {{ $kardex->output->value }} </p>
 						<p><strong>Precio unitario: </strong> {{ $kardex->sale->unitary }}</p>
+						<p><strong>Nombre de conductor: </strong> {{ $kardex->sale->driver->name }}</p>
+						<p><strong>Placa de vehiculo: </strong> {{ $kardex->sale->vehicle->plaque }}</p>
 					@endif
 					<p><strong>Saldo a la fecha: </strong> {{ $kardex->balance }}</p>
 					

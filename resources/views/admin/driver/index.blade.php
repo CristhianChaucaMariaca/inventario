@@ -46,16 +46,7 @@
 										<?php echo "".$c++; ?>
 									</td>
 									<td>{{ $driver->name }}</td>
-									<td>{{ $driver->last_name }}</td>								
-									<td>
-										@if($driver->status == 'FREE')
-											Libre
-										@elseif($driver->status == 'OCCUPIED')
-											Ocupado
-										@elseif($driver->status == 'OUT')
-											Fuera
-										@endif
-									</td>								
+									<td>{{ $driver->last_name }}</td>
 									<td width="10px">
 										@can('drivers.show')
 										<a href="{{ route('drivers.show', $driver->id) }}" class="btn btn-sm btn-default"><span class="icon-eye-plus"></span></a>

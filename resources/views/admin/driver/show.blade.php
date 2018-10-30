@@ -16,15 +16,6 @@
 					<p><strong><span class="icon-location"></span></strong> {{ $driver->address }}</p>
 					<p><strong><span class="icon-profile"></span></strong> {{ $driver->ci }}</p>
 					<p><strong><span class="icon-truck"></span></strong> {{ $driver->license }}</p>
-					<p><strong>Estado: </strong>
-						@if($driver->status == 'FREE')
-								<span>LIBRE</span>
-						@elseif($driver->status == 'OCCUPIED')
-							<span>OCUPADO</span>
-						@elseif($driver->status == 'OUT')
-							<span>FUERA DE SERVICIO</span>
-						@endif
-					</p>
 					@if($driver->user->email)
 						<p><strong>Gerente: </strong>{{ $driver->user->name }}</p>
 					@endif

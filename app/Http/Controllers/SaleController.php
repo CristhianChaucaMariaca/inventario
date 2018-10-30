@@ -10,6 +10,7 @@ use App\Http\Requests\SaleUpdateRequest;
 
 use App\Product;
 use App\Driver;
+use App\Vehicle;
 use App\Kardex;
 
 use Illuminate\Support\Facades\DB;
@@ -38,8 +39,9 @@ class SaleController extends Controller
     public function create()
     {
         $products=Product::orderBy('name','DESC')->where('status','PUBLIC')->pluck('name','id');
-        $drivers=Driver::orderBy('name','DESC')->where('status','FREE')->where('user_id',auth()->user()->id)->pluck('name','id');
-        return view('admin.sale.create', compact('products','drivers'));
+        $drivers=Driver::orderBy('name','DESC')->where('user_id',auth()->user()->id)->pluck('name','id');
+        $vehicles=Vehicle::orderBy('plaque','DESC')->where('status','FREE')->pluck('plaque','id');
+        return view('admin.sale.create', compact('products','drivers','vehicles'));
     }
 
     /**
@@ -87,7 +89,8 @@ class SaleController extends Controller
     {
         $products=Product::orderBy('name','DESC')->pluck('name','id');
         $drivers=Driver::orderBy('name','DESC')->pluck('name','id');
-        return view('admin.sale.edit', compact('sale','products','drivers'));
+        $vehicles=Vehicle::orderBy('plaque','DESC')->where('status','FREE')->pluck('plaque','id');
+        return view('admin.sale.edit', compact('sale','products','drivers','vehicles'));
     }
 
     /**

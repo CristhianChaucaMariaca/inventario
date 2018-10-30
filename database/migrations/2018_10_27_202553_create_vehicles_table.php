@@ -21,6 +21,7 @@ class CreateVehiclesTable extends Migration
             $table->string('color');
             $table->string('brand');
             $table->string('model');
+            $table->enum('status',['FREE','OCCUPIED','OUT'])->default('OUT');
 
             $table->timestamps();
         });

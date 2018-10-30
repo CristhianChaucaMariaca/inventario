@@ -11,7 +11,6 @@ $factory->define(App\Driver::class, function (Faker $faker) {
         'address'	=> $faker->address,
         'ci'		=> $faker->numberBetween(99999,999999),
         'license'	=> $faker->numberBetween(99999,999999),
-        'status'	=> $faker->randomElement(['FREE','OCCUPIED','OUT']),
 
     ];
 });

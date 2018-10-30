@@ -24,7 +24,6 @@ class CreateDriversTable extends Migration
             $table->string('address',128);
             $table->integer('ci');
             $table->integer('license');
-            $table->enum('status',['FREE','OCCUPIED','OUT'])->default('OUT');
 
             $table->timestamps();
 
