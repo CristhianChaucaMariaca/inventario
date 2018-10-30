@@ -54,8 +54,10 @@ class SaleController extends Controller
     {
         $id=Kardex::where('product_id',$request->product_id)->max('id');
         $k=Kardex::find($id);
-        if ($request->cuantity > $k->balance || $request->cuantity < $k->product->min) {
-            return back()->with('info','La cantidad solicitada no puede ser procesada');
+        if ($request->cuantity > $k->balance) {
+            return back()->with('danger','La cantidad solicitada no puede ser mayor al stock en almacenes');
+        }elseif (($k->balance-$request->cuantity)<$k->product->min ) {
+            return back()->with('danger','La cantidad solicitada no puede dejar un stock menor al minimo');
         }
         $sale=Sale::create($request->all());
         if ($sale->status == 'FINISHED') {
