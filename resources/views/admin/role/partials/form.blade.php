@@ -8,7 +8,7 @@
 </div>
 <div class="form-group">
 	{{ Form::label('description', 'Descripcion') }}
-	{{ Form::text('description', null, ['class'=>'form-control', 'placeholder'=>'Telefono', 'id'=>'description']) }}
+	{{ Form::text('description', null, ['class'=>'form-control', 'placeholder'=>'Descripción de rol', 'id'=>'description']) }}
 </div>
 <hr>
 <h3>Permiso especial</h3>
