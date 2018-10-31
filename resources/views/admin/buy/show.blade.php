@@ -10,8 +10,18 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<p><strong>Producto: </strong> {{ $buy->product->name }}</p>
-					<p><strong>Proveedor: </strong> {{ $buy->provider->name }}</p>
+					<p>
+						<strong>Producto: </strong> {{ $buy->product->name }} 
+						@can('products.show')
+						<a href="{{ route('products.show', $buy->product) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>
+						@endcan
+					</p>
+					<p>
+						<strong>Proveedor: </strong> {{ $buy->provider->name }} 
+						@can('providers.show')
+						<a href="{{ route('providers.show', $buy->provider) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>
+						@endcan
+					</p>
 					<p><strong>Cantidad adquirida: </strong>{{ $buy->cuantity }}</p>
 					<p><strong>Costo total: </strong> {{ $buy->unitary*$buy->cuantity }}</p>
 					<p><strong>Costo unitario: </strong> {{ $buy->unitary }}</p>

@@ -13,11 +13,26 @@
 
 				</div>
 				<div class="panel-body">
-					<p><strong>Producto: </strong> {{ $sale->product->name }}</p>
+					<p>
+						<strong>Producto: </strong> {{ $sale->product->name }} 
+						@can('products.show')
+						<a href="{{ route('products.show', $sale->product) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>
+						@endcan
+					</p>
 					<p><strong>Cantidad adquirida: </strong>{{ $sale->cuantity }}</p>
 					<p><strong>Costo total: </strong> {{ $sale->unitary*$sale->cuantity }}</p>
-					<p><strong>Conductor: </strong> {{ $sale->driver->name }}</p>
-					<p><strong>Placa de Vehiculo: </strong> {{ $sale->vehicle->plaque }}</p>
+					<p>
+						<strong>Conductor: </strong> {{ $sale->driver->name }}
+						@can('drivers.show')
+						<a href="{{ route('drivers.show', $sale->driver) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>
+						@endcan
+					</p>
+					<p>
+						<strong>Placa de Vehiculo: </strong> {{ $sale->vehicle->plaque }} 
+						@can('vehicles.show')
+						<a href="{{ route('vehicles.show', $sale->vehicle) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>
+						@endcan
+					</p>
 					<p><strong>Estado: </strong>
 						@if($sale->status == 'PENDING')
 							Pendiente
