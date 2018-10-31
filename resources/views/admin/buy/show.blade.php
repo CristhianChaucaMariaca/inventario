@@ -6,7 +6,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3>Codigo de compra: {{ $buy->id }}
+						@can('reports.buypdf')
 						<a href="{{ route('buypdf',$buy) }}" class="btn btn-default pull-right"><span class="icon-file-pdf"></span></a>
+						@endcan
 					</h3>
 				</div>
 				<div class="panel-body">
