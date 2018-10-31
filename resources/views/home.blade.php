@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         @endcan
-                        @can('vehicle.index')
+                        @can('vehicles.index')
                         <div class="col-md-4">
                             <div class="card border-secondary mb-3">
                                 <div class="card-header"><h1 class="icon-truck text-center"></h1></div>

@@ -6,7 +6,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Lista de Vehiculos
-					@can('vehicle.create')
+					@can('vehicles.create')
 					<a href="{{ route('vehicles.create') }}" class="btn btn-sm btn-primary pull-right"><span class="icon-plus"></span></a>
 					@endcan
 				</div>
