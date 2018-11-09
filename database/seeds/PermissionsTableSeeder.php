@@ -390,5 +390,30 @@ class PermissionsTableSeeder extends Seeder
             'slug'          => 'reports.buysprovider',
             'description'   => 'Crea un reporte detallado de las compras de un proveedor en formato pdf',
         ]);
+
+        //Charts
+        Permission::create([
+            'name'          =>'Navega graficos',
+            'slug'          => 'graphics.index',
+            'description'   => 'Permite navegar por la lista de gráficos',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico general de Stocks',
+            'slug'          => 'graphics.stoksgraphics',
+            'description'   => 'Muestra el grafico general del stock de los productos',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico general de compras',
+            'slug'          => 'graphics.buysgraphics',
+            'description'   => 'Muestra un gráfico de las compras en general de todo el historial de registros',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico general de exportaciones',
+            'slug'          => 'graphics.salesgraphics',
+            'description'   => 'Muestra un grafico de las exportaciones en general de todo el historial de registros',
+        ]);
     }
 }

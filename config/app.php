@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -186,6 +186,9 @@ return [
 
         //CAFFEINATED
         Caffeinated\Shinobi\ShinobiServiceProvider::class,
+
+        //Charts (ConsoleTV/Charts)
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
     ],
 
     /*

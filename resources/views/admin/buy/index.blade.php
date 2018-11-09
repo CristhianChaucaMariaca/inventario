@@ -7,7 +7,10 @@
 				<div class="panel-heading">
 					Lista de compras
 					@can('buys.create')
-					<a href="{{ route('buys.create') }}" class="btn btn-sm btn-primary pull-right"><span class="icon-cart"></span></a>
+					<a href="{{ route('buys.create') }}" class="btn btn-sm btn-primary pull-right"><span class="icon-cart"></span></a> 
+					@endcan
+					@can('graphics.buysgraphics')
+						<a href="{{ route('buysgraphics') }}" class="btn btn-default"><span class=" icon-stats-dots"></span></a>
 					@endcan
 				</div>
 				<div class="panel-body">

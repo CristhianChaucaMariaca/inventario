@@ -6,6 +6,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Lista de Exportaciones
+					@can('graphics.salesgraphics')
+						<a href="{{ route('salesgraphics') }}" class="btn btn-default"><span class=" icon-stats-dots"></span></a>
+					@endcan
 					@can('sales.create')
 					<a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary pull-right"><span class="icon-airplane"></span></a>
 					@endcan

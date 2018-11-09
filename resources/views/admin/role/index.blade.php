@@ -26,14 +26,24 @@
 										{{ $role->id}}
 									</td>
 									<td>{{ $role->name }}</td>							
-									<td width="10px"><a href="{{ route('roles.show', $role->id) }}" class="btn btn-sm btn-default"><span class="icon-eye-plus"></span></a></td>
-									<td width="10px"><a href="{{ route('roles.edit', $role->id) }}" class="btn btn-sm btn-default"><span class="icon-wrench"></span></a></td>
 									<td width="10px">
+										@can('roles.show')
+										<a href="{{ route('roles.show', $role->id) }}" class="btn btn-sm btn-default"><span class="icon-eye-plus"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('roles.edit')
+										<a href="{{ route('roles.edit', $role->id) }}" class="btn btn-sm btn-default"><span class="icon-wrench"></span></a>
+										@endcan
+									</td>
+									<td width="10px">
+										@can('roles.destroy')
 										{!! Form::open(['route'=>['roles.destroy', $role->id],'method'=>'DELETE']) !!}
 											<button class="btn btn-sm btn-danger">
 												<span class="icon-bin2"></span>
 											</button>
 										{!! Form::close() !!}
+										@endcan
 									</td>
 								</tr>
 							@endforeach

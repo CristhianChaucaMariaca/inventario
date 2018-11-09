@@ -6,6 +6,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="text-center">Lista de Movimientos</h3>
+					@can('graphics.stoksgraphics')
+						<a href="{{ route('stoksgraphics') }}" class="btn btn-default"><span class=" icon-stats-dots"></span></a>
+					@endcan
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped table-hover">

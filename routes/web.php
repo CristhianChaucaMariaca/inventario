@@ -332,4 +332,18 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('buysprovider/{provider}','ReportController@buysprovider')->name('buysprovider')
 		->middleware('permission:reports.buysprovider');
+
+	//Charts	
+
+	Route::get('charts','GraphicController@index')->name('charts')
+		->middleware('permission:graphics.charts');
+
+	Route::get('stoksgraphics','GraphicController@stoksgraphics')->name('stoksgraphics')
+		->middleware('permission:graphics.stoksgraphics');
+
+	Route::get('buysgraphics','GraphicController@buysgraphics')->name('buysgraphics')
+		->middleware('permission:graphics.buysgraphics');
+
+	Route::get('salesgraphics','GraphicController@salesgraphics')->name('salesgraphics')
+		->middleware('permission:graphics.salesgraphics');
 });
