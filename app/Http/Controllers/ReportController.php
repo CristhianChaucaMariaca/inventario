@@ -86,6 +86,11 @@ class ReportController extends Controller
         return $pdf->download('Lista_de_Proveedores.pdf');
     }
 
+    public function buysprovider(Provider $provider){
+        $pdf=PDF::loadView('admin.report.buysprovider',compact('provider'));
+        return $pdf->download('Compras_de_proveedores.pdf');
+    }
+
     public function provider(Provider $provider){
         $pdf=PDF::loadView('admin.report.provider',compact('provider'));
         return $pdf->download('detalle_proveedor.pdf');

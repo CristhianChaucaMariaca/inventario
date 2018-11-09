@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Provider;
+use App\Buy;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\ProviderStoreRequest;
@@ -58,7 +59,8 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        return view('admin.provider.show', compact('provider'));
+        $buys=Buy::orderBy('id','DESC')->where('provider_id',$provider->id)->get();
+        return view('admin.provider.show', compact('provider','buys'));
     }
 
     /**

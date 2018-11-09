@@ -329,4 +329,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('detalleprovider/{provider}','ReportController@provider')->name('detalleprovider')
 		->middleware('permission:reports.provider');
+
+	Route::get('buysprovider/{provider}','ReportController@buysprovider')->name('buysprovider')
+		->middleware('permission:reports.buysprovider');
 });

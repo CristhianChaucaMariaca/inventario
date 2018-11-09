@@ -18,4 +18,7 @@ class Provider extends Model
     		return $query->where('name','LIKE',"%$name%");
     	}
     }
+    public function buys(){
+        return $this->hasMany(Buy::class);
+    }
 }

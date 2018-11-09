@@ -384,5 +384,11 @@ class PermissionsTableSeeder extends Seeder
             'slug'          => 'reports.provider',
             'description'   => 'Crea un reporte detallado de un proveedor en formato pdf',
         ]);
+
+        Permission::create([
+            'name'          =>'Reporte de las compras del proveedor',
+            'slug'          => 'reports.buysprovider',
+            'description'   => 'Crea un reporte detallado de las compras de un proveedor en formato pdf',
+        ]);
     }
 }
