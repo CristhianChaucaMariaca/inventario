@@ -24,4 +24,8 @@ class Sale extends Model
     public function vehicle(){
         return $this->belongsTo(Vehicle::class);
     }
+
+    public function kardex(){
+        return $this->hasOne(Kardex::class);
+    }
 }

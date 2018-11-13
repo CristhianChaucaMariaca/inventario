@@ -20,7 +20,7 @@ class Kardex extends Model
         return $this->belongsTo(Product::class);
     }
     public function sale(){
-    	return $this->belongsTo(Sale::class);
+    	return $this->hasOne(Sale::class);
     }
     public function buy(){
     	return $this->belongsTo(Buy::class);

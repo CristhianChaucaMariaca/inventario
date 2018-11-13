@@ -21,6 +21,8 @@
 								<th>Producto</th>
 								<th>Cantidad</th>
 								<th>Costo</th>
+								<th>Unitario</th>
+								<th>Est. Ganancia</th>
 								<th>Estado</th>
 								<th colspan="3">&nbsp;</th>
 							</tr>
@@ -39,6 +41,14 @@
 									<td>{{ $sale->product->name }} ({{ $sale->product->type->name }})</td>
 									<td>{{ $sale->cuantity }}</td>
 									<td>{{ $sale->unitary*$sale->cuantity }}</td>
+									<td>{{ $sale->unitary }}</td>
+									<td>
+										@if($sale->kardex)
+										{{ (($sale->unitary * $sale->cuantity) - (($sale->kardex->value/$sale->kardex->balance)*$sale->cuantity)) }}
+										@else
+											<span class="icon-blocked text-danger"></span>
+										@endif
+									</td>
 									@if($sale->status == 'PENDING')
 										<td>
 											Pendiente
