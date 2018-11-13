@@ -159,6 +159,18 @@
                             </div>
                         </div>
                         @endcan
+                        @can('graphics.index')
+                        <div class="col-md-4">
+                            <div class="card border-secondary mb-3">
+                                <div class="card-header"><h1 class="icon-stats-bars text-center"></h1></div>
+                                <div class="card-body text-primary">
+                                    <div class="card-text">
+                                        <a href="{{ route('charts') }}" class="btn btn-dark btn-block" style="margin: 1px">Gráficos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endcan
                     </div>
                 </div>
             </div>

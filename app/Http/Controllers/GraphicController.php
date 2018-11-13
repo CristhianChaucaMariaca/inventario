@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class GraphicController extends Controller
 {
+
+    public function index(){
+        return view('admin.graphics.index');
+    }
     
 	public function stoksgraphics(){
     	$kardex=Kardex::orderBy('id','ASC')->pluck('balance');

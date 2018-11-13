@@ -336,7 +336,7 @@ Route::middleware(['auth'])->group(function(){
 	//Charts	
 
 	Route::get('charts','GraphicController@index')->name('charts')
-		->middleware('permission:graphics.charts');
+		->middleware('permission:graphics.index');
 
 	Route::get('stoksgraphics','GraphicController@stoksgraphics')->name('stoksgraphics')
 		->middleware('permission:graphics.stoksgraphics');

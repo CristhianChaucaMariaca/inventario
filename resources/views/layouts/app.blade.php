@@ -76,6 +76,9 @@
                         @can('reports.index')
                         <li class="nav-item {{ request()->is('reports') ? 'active' : '' }}"><a href="{{ route('reports') }}" class="nav-link"><span class="icon-file-pdf"></span></a></li>
                         @endcan
+                        @can('graphics.index')
+                        <li class="nav-item {{ request()->is('charts') ? 'active' : '' }}"><a href="{{ route('charts') }}" class="nav-link"><span class="icon-stats-bars"></span></a></li>
+                        @endcan
             </ul>
             <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->

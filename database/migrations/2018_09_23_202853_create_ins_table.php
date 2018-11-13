@@ -25,7 +25,7 @@ class CreateInsTable extends Migration
 
             $table->foreign('kardex_id')->references('id')->on('kardexes')
                 ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('no action');
         });
     }
 

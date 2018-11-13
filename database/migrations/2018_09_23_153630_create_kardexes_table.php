@@ -28,16 +28,16 @@ class CreateKardexesTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
+                ->onDelete('no action')
                 ->onUpdate('cascade');
             $table->foreign('product_id')->references('id')->on('products')
-                ->onDelete('cascade')
+                ->onDelete('no action')
                 ->onUpdate('cascade');
             $table->foreign('sale_id')->references('id')->on('sales')
-                ->onDelete('cascade')
+                ->onDelete('no action')
                 ->onUpdate('cascade');
             $table->foreign('buy_id')->references('id')->on('buys')
-                ->onDelete('cascade')
+                ->onDelete('no action')
                 ->onUpdate('cascade');
         });
     }

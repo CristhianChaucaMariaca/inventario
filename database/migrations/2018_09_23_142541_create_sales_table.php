@@ -27,13 +27,13 @@ class CreateSalesTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
+                ->onDelete('no action')
                 ->onUpdate('cascade');
             $table->foreign('driver_id')->references('id')->on('drivers')
-                ->onDelete('cascade')
+                ->onDelete('no action')
                 ->onUpdate('cascade');
             $table->foreign('product_id')->references('id')->on('products')
-                ->onDelete('cascade')
+                ->onDelete('no action')
                 ->onUpdate('cascade');
         });
     }
