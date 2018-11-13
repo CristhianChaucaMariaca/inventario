@@ -26,12 +26,17 @@
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+								$c=1;
+							?>
 							@foreach($sales as $sale)
 								<tr>
 									<td>
-										{{ $sale->id}}
+										<?php
+											echo $c++;
+										?>
 									</td>
-									<td>{{ $sale->product->name }}</td>
+									<td>{{ $sale->product->name }} ({{ $sale->product->type->name }})</td>
 									<td>{{ $sale->cuantity }}</td>
 									<td>{{ $sale->unitary*$sale->cuantity }}</td>
 									@if($sale->status == 'PENDING')

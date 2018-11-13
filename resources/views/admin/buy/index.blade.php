@@ -27,12 +27,17 @@
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+								$c=1;
+							?>
 							@foreach($buys as $buy)
 								<tr>
 									<td>
-										{{ $buy->id}}
+										<?php
+											echo $c++;
+										?>
 									</td>
-									<td>{{ $buy->product->name }}</td>
+									<td>{{ $buy->product->name }} ({{ $buy->product->type->name }})</td>
 									<td>{{ $buy->provider->name }}</td>
 									<td>{{ $buy->cuantity }}</td>
 									<td>{{ $buy->unitary*$buy->cuantity }}</td>

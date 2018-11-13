@@ -19,6 +19,12 @@
 						@endcan
 					</p>
 					<p>
+						<strong>Tipo: </strong> {{ $buy->product->type->name }} 
+					</p>
+					<p>
+						<strong>Unidad de medida: </strong> {{ $buy->product->type->measure->name }} ({{ $buy->product->type->measure->no }})
+					</p>
+					<p>
 						<strong>Proveedor: </strong> {{ $buy->provider->name }} 
 						@can('providers.show')
 						<a href="{{ route('providers.show', $buy->provider) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>

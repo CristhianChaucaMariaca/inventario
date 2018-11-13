@@ -19,6 +19,12 @@
 						<a href="{{ route('products.show', $sale->product) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>
 						@endcan
 					</p>
+					<p>
+						<strong>Tipo: </strong> {{ $sale->product->type->name }}
+					</p>
+					<p>
+						<strong>Unidad de medida: </strong> {{ $sale->product->type->measure->name }} ({{ $sale->product->type->measure->no }})
+					</p>
 					<p><strong>Cantidad adquirida: </strong>{{ $sale->cuantity }}</p>
 					<p><strong>Costo total: </strong> {{ $sale->unitary*$sale->cuantity }}</p>
 					<p>
