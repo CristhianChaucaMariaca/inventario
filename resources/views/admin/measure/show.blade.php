@@ -8,8 +8,8 @@
 					Detalle de medida
 				</div>
 				<div class="panel-body">
-					<p><strong><span class="icon-phone"></span></strong> {{ $measure->name }}</p>
-					<p><strong><span class="icon-location"></span></strong> {{ $measure->no }}</p>
+					<p><strong>Medida:</strong> {{ $measure->name }}</p>
+					<p><strong>Nomenclatura:</strong> {{ $measure->no }}</p>
 				</div>
 			</div>
 		</div>

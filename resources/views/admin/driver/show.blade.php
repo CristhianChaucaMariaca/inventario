@@ -12,10 +12,10 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<p><strong><span class="icon-phone"></span></strong> {{ $driver->phone }}</p>
-					<p><strong><span class="icon-location"></span></strong> {{ $driver->address }}</p>
-					<p><strong><span class="icon-profile"></span></strong> {{ $driver->ci }}</p>
-					<p><strong><span class="icon-truck"></span></strong> {{ $driver->license }}</p>
+					<p><strong><span class="icon-phone"></span> Telefono:</strong> {{ $driver->phone }}</p>
+					<p><strong><span class="icon-location"></span> Dirección: </strong> {{ $driver->address }}</p>
+					<p><strong><span class="icon-profile"></span> Cedula </strong> {{ $driver->ci }}</p>
+					<p><strong><span class="icon-truck"></span> Licencia:</strong> {{ $driver->license }}</p>
 					@if($driver->user->email)
 						<p><strong>Gerente: </strong>{{ $driver->user->name }}</p>
 					@endif

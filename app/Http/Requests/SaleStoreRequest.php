@@ -27,8 +27,8 @@ class SaleStoreRequest extends FormRequest
             'user_id'   => 'required',
             'driver_id' =>  'required',
             'product_id'=> 'required',
-            'cuantity'  => 'required',
-            'unitary'   => 'required',
+            'cuantity'  => 'required|numeric|min:1|max:999999',
+            'unitary'   => 'required|numeric|min:0|max:99999',
             'status'    => 'required',
         ];
     }

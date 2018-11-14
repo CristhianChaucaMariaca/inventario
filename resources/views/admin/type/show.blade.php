@@ -8,8 +8,8 @@
 					Detalle de tipo de producto
 				</div>
 				<div class="panel-body">
-					<p><strong><span class="icon-phone"></span></strong> {{ $type->name }}</p>
-					<p><strong><span class="icon-location"></span></strong> {{ $type->measure->no }}</p>
+					<p><strong>Tipo de producto: </strong> {{ $type->name }}</p>
+					<p><strong>Medida:</strong> {{ $type->measure->no }}</p>
 				</div>
 			</div>
 		</div>

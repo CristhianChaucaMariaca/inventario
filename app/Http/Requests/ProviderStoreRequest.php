@@ -26,7 +26,7 @@ class ProviderStoreRequest extends FormRequest
         return [
             'name'=>'required|unique:providers,name',
             'address' => 'required|string|min:10|max:50',
-            'phone'    =>'required|unique:providers,phone|integer|max:799999999',
+            'phone'    =>'required|unique:providers,phone|integer|digits:8',
         ];
     }
 }
