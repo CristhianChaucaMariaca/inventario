@@ -26,7 +26,7 @@ class ProductUpdateRequest extends FormRequest
         return [
             'type_id'=>'required',
             'name'=>'required',
-            'min'=>'required',
+            'min'=>'integer|min:1|max:9999|required',
             'status'=>'required',
         ];
     }

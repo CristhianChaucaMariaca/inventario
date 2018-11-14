@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MeasureUpdateRequest extends FormRequest
+class VehicleUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,12 @@ class MeasureUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'string|required|min:2',
-            'no'=>'alpha_num|required',
+            'plaque'=>'required|alpha_num|min:3|max:10',
+            'capacity'=>'required|numeric|min:2|max:99999',
+            'color'=>'required|alpha|min:3|max:30',
+            'brand'=>'required|string|min:3|max:20',
+            'model'=>'required|string|min:3|max:30',
+            'status'=>'required',
         ];
     }
 }

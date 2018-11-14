@@ -24,8 +24,8 @@ class MeasureStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'string|required',
-            'no'=>'alfa|required',
+            'name'=>'string|required|min:2|unique:measures,name',
+            'no'=>'alpha_num|required|unique:measures,no',
         ];
     }
 }

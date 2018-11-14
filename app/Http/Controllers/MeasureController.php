@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Measure;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\MeasureStoreRequest;
+use App\Http\Requests\MeasureUpdateRequest;
+
 class MeasureController extends Controller
 {
     /**
@@ -34,7 +37,7 @@ class MeasureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MeasureStoreRequest $request)
     {
         $measure=Measure::create($request->all());
         if (auth()->user()->can(['measures.edit'])) {
@@ -73,7 +76,7 @@ class MeasureController extends Controller
      * @param  \App\measure  $measure
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Measure $measure)
+    public function update(MeasureUpdateRequest $request, Measure $measure)
     {
         $measure->update($request->all());
         return redirect()->route('measures.edit', compact('measure'))

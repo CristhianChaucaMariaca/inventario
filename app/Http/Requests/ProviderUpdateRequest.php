@@ -24,9 +24,9 @@ class ProviderUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|unique:products,name,'.$this->product,
-            'address' => 'required',
-            'phone'    =>'required'
+            'name'=>'required|min:2|max:30',
+            'address' => 'required|string|min:10|max:50',
+            'phone'    =>'required|integer|max:999999999|min:7',
         ];
     }
 }

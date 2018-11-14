@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Vehicle;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\VehicleStoreRequest;
+use App\Http\Requests\VehicleUpdateRequest;
+
 class VehicleController extends Controller
 {
     /**
@@ -34,7 +37,7 @@ class VehicleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VehicleStoreRequest $request)
     {
         $vehicle=Vehicle::create($request->all());
         if (auth()->user()->can(['vehicles.edit'])) {
@@ -73,7 +76,7 @@ class VehicleController extends Controller
      * @param  \App\vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vehicle $vehicle)
+    public function update(VehicleUpdateRequest $request, Vehicle $vehicle)
     {
         $vehicle->update($request->all());
         return redirect()->route('vehicles.edit', compact('vehicle'))

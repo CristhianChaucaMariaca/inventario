@@ -24,12 +24,12 @@ class DriverStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'last_name'=>'required',
-            'phone' => 'required',
-            'address'=> 'required',
-            'ci'        => 'required',
-            'license'   => 'required',
+            'name'=>'required|min:5|max:30|string',
+            'last_name'=>'required|min:5|max:30|string',
+            'phone' => 'required|integer|min:7|max:999999999',
+            'address'=> 'required|string|min:5|max:50',
+            'ci'        => 'required|integer|min:4|max:99999999',
+            'license'   => 'required|alpha_num|min:4|max:15',
         ];
     }
 }

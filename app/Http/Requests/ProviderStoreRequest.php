@@ -24,9 +24,9 @@ class ProviderStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|unique:products,name',
-            'address' => 'required',
-            'phone'    =>'required'
+            'name'=>'required|unique:providers,name',
+            'address' => 'required|string|min:10|max:50',
+            'phone'    =>'required|unique:providers,phone|integer|max:799999999',
         ];
     }
 }
