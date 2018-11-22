@@ -318,6 +318,21 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Crear Reporte en formato PDF de kardex',
         ]);
         Permission::create([
+            'name'          =>'Reporte anual Kardex PDF',
+            'slug'          => 'reports.kardexes_year',
+            'description'   => 'Crear Reporte anual en formato PDF de kardex',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte mensual Kardex PDF',
+            'slug'          => 'reports.kardexes_month',
+            'description'   => 'Crear Reporte mensual en formato PDF de kardex',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte del dia Kardex PDF',
+            'slug'          => 'reports.kardexes_today',
+            'description'   => 'Crear Reporte del dia en formato PDF de kardex',
+        ]);
+        Permission::create([
            'name'          =>'Reporte detalle Kardex PDF',
             'slug'          => 'reports.kardex',
             'description'   => 'Crear Reporte detallado de kardex en formato PDF', 
@@ -328,9 +343,39 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Crear Reporte en formato PDF de exportaciones',
         ]);
         Permission::create([
+            'name'          =>'Reporte anual Exportaciones PDF',
+            'slug'          => 'reports.export_year',
+            'description'   => 'Crear Reporte anual en formato PDF de exportaciones',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte mensual Exportaciones PDF',
+            'slug'          => 'reports.export_month',
+            'description'   => 'Crear Reporte mensual en formato PDF de exportaciones',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte Exportaciones del dia PDF',
+            'slug'          => 'reports.export_today',
+            'description'   => 'Crear Reporte del dia en formato PDF de exportaciones',
+        ]);
+        Permission::create([
             'name'          =>'Reporte general Compras PDF',
             'slug'          => 'reports.buyreport',
             'description'   => 'Crear Reporte en formato PDF de compras',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte anual de Compras PDF',
+            'slug'          => 'reports.buy_year',
+            'description'   => 'Crear Reporte anual en formato PDF de compras',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte de Compras mensual PDF',
+            'slug'          => 'reports.buy_month',
+            'description'   => 'Crear Reporte de compras mensual en formato PDF',
+        ]);
+        Permission::create([
+            'name'          =>'Reporte de Compras del dia PDF',
+            'slug'          => 'reports.buy_today',
+            'description'   => 'Crear Reporte de compras del dia en formato PDF',
         ]);
         Permission::create([
             'name'          =>'Reporte compra unitaria PDF',

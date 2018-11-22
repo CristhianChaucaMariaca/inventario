@@ -11,6 +11,7 @@ use App\Driver;
 use App\Product;
 use App\Provider;
 use App\User;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -21,6 +22,41 @@ class ReportController extends Controller
 	}
     public function report(){
         $kardexs=Kardex::orderBy('created_at','DESC')->get();
+        $pdf=PDF::loadView('admin.report.kardexes',compact('kardexs'));
+        return $pdf->download('kardex.pdf');
+    }
+
+    public function kardexes_year(){
+        $y=Carbon::create()->format('Y');
+
+        $kardexs=Kardex::orderBy('created_at','DESC')
+            ->whereYear('created_at','=',$y)
+            ->get();
+
+        $pdf=PDF::loadView('admin.report.kardexes',compact('kardexs'));
+        return $pdf->download('kardex.pdf');
+    }
+
+    public function kardexes_month(){
+        $y=Carbon::create()->format('Y');
+        $m=Carbon::create()->format('m');
+
+        $kardexs=Kardex::orderBy('created_at','DESC')
+            ->whereMonth('created_at','=',$y)
+            ->whereMonth('created_at','=',$m)
+            ->get();
+            
+        $pdf=PDF::loadView('admin.report.kardexes',compact('kardexs'));
+        return $pdf->download('kardex.pdf');
+    }
+
+    public function kardexes_today(){
+        $today=Carbon::create()->format('Y-m-d');
+
+        $kardexs=Kardex::orderBy('created_at','DESC')
+            ->whereDate('created_at','=',$today)
+            ->get();
+
         $pdf=PDF::loadView('admin.report.kardexes',compact('kardexs'));
         return $pdf->download('kardex.pdf');
     }
@@ -37,6 +73,41 @@ class ReportController extends Controller
         return $pdf->download('Historial-de-exportaciones.pdf');
     }
 
+    public function export_year(){
+        $y=Carbon::create()->format("Y");
+
+        $sales=Sale::orderBy('created_at','DESC')
+            ->whereYear('created_at','=',$y)
+            ->get();
+
+        $pdf=PDF::loadView('admin.report.exports',compact('sales'));
+        return $pdf->download('Historial-de-exportaciones.pdf');
+    }
+
+    public function export_month(){
+        $m=Carbon::create()->format("m");
+        $y=Carbon::create()->format("Y");
+
+        $sales=Sale::orderBy('created_at','DESC')
+            ->whereYear('created_at','=',$y)
+            ->whereMonth('created_at','=',$m)
+            ->get();
+
+        $pdf=PDF::loadView('admin.report.exports',compact('sales'));
+        return $pdf->download('Historial-de-exportaciones.pdf');
+    }
+
+    public function export_today(){
+        $today=Carbon::create()->format("Y-m-d");
+
+        $sales=Sale::orderBy('created_at','DESC')
+            ->whereDate('created_at','=',$today)
+            ->get();
+
+        $pdf=PDF::loadView('admin.report.exports',compact('sales'));
+        return $pdf->download('Historial-de-exportaciones.pdf');
+    }
+
     public function venta(Sale $sale){
         $pdf=PDF::loadView('admin.report.export',compact('sale'));
         return $pdf->download('Exportacion.pdf');
@@ -44,6 +115,42 @@ class ReportController extends Controller
 
     public function report_compra(){
         $buys=Buy::orderBy('created_at','DESC')->get();
+        $pdf=PDF::loadView('admin.report.buys',compact('buys'));
+        return $pdf->download('Historial-de-Compras.pdf');
+    }
+
+    public function buy_today(){
+        $date=Carbon::create()->format('Y/m/d');
+
+        $buys=Buy::orderBy('created_at','DESC')
+            ->whereDate('created_at','=',$date)
+            ->get();
+
+        $pdf=PDF::loadView('admin.report.buys',compact('buys'));
+        return $pdf->download('Historial-de-Compras.pdf');
+    }
+
+    public function buy_month(){
+        $m=Carbon::create()->format('m');
+        $y=Carbon::create()->format('Y');
+
+
+        $buys=Buy::orderBy('created_at','DESC')
+            ->whereYear('created_at','=',$y)
+            ->whereMonth('created_at','=',$m)
+            ->get();
+
+        $pdf=PDF::loadView('admin.report.buys',compact('buys'));
+        return $pdf->download('Historial-de-Compras.pdf');
+    }
+
+    public function buy_year(){
+        $date=Carbon::create()->format('Y');
+
+        $buys=Buy::orderBy('created_at','DESC')
+            ->whereYear('created_at','=',$date)
+            ->get();
+
         $pdf=PDF::loadView('admin.report.buys',compact('buys'));
         return $pdf->download('Historial-de-Compras.pdf');
     }

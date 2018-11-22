@@ -291,17 +291,44 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('export', 'ReportController@report_venta')->name('export')
 		->middleware('permission:reports.export');
 
+	Route::get('export_year', 'ReportController@export_year')->name('export_year')
+		->middleware('permission:reports.export_year');
+	
+	Route::get('export_month', 'ReportController@export_month')->name('export_month')
+		->middleware('permission:reports.export_month');
+	
+	Route::get('export_today', 'ReportController@export_today')->name('export_today')
+		->middleware('permission:reports.export_today');
+
 	Route::get('venta/{sale}','ReportController@venta')->name('venta')
 		->middleware('permission:reports.venta');
 
 	Route::get('buy', 'ReportController@report_compra')->name('buyreport')
 		->middleware('permission:reports.buyreport');
 
+	Route::get('buy_today', 'ReportController@buy_today')->name('buy_today')
+		->middleware('permission:reports.buy_today');
+
+	Route::get('buy_month', 'ReportController@buy_month')->name('buy_month')
+		->middleware('permission:reports.buy_month');
+
+	Route::get('buy_year', 'ReportController@buy_year')->name('buy_year')
+		->middleware('permission:reports.buy_year');
+
 	Route::get('buypdf/{buy}', 'ReportController@buy')->name('buypdf')
 		->middleware('permission:reports.buypdf');
 
 	Route::get('Kardexs', 'ReportController@report')->name('kardexs')
 		->middleware('permission:reports.kardexes');
+
+	Route::get('kardexes_year', 'ReportController@kardexes_year')->name('kardexes_year')
+		->middleware('permission:reports.kardexes_year');
+
+	Route::get('kardexes_month', 'ReportController@kardexes_month')->name('kardexes_month')
+		->middleware('permission:reports.kardexes_month');
+
+	Route::get('kardexes_today', 'ReportController@kardexes_today')->name('kardexes_today')
+		->middleware('permission:reports.kardexes_today');
 
 	Route::get('detallekardex/{kardex}','ReportController@kardex')->name('detallekardex')
 		->middleware('permission:reports.kardex');
