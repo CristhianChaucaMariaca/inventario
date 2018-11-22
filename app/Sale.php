@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+
 use Illuminate\Database\Eloquent\Model;
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
 
@@ -27,5 +29,22 @@ class Sale extends Model
 
     public function kardex(){
         return $this->hasOne(Kardex::class);
+    }
+
+    public function scopeDate($query,$date){
+        if ($date == 'today') {
+            $d=Carbon::create()->format('Y-m-d');
+            return $query->whereDate('created_at','=',$d);
+        }elseif ($date=='month') {
+            $y=Carbon::create()->format('Y');
+            $m=Carbon::create()->format('m');
+            return $query->whereYear('created_at','=',$y)
+                ->whereMonth('created_at','=',$m);
+        }
+        elseif ($date=='year') {
+            $y=Carbon::create()->format('Y');
+            return $query->whereYear('created_at','=',$y);
+        }elseif ($date=='') {
+        }
     }
 }

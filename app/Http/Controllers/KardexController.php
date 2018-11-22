@@ -22,9 +22,12 @@ class KardexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kardexs=Kardex::orderBy('created_at', 'DESC')->paginate(20);
+        $date=$request->get('date');
+        $kardexs=Kardex::orderBy('created_at', 'DESC')
+            ->date($date)
+            ->paginate(20);
         return view('admin.kardex.index', compact('kardexs'));
     }
 

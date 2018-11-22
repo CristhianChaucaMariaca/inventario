@@ -4,6 +4,18 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
+				<div class="panel-body">
+						{{ Form::open(['route'=>'sales.index','method'=>'GET','class'=>'form-inline pull-right']) }}
+						<div class="form-group">
+							{!! Form::select('date',['today'=>'Hoy','month'=>'Mensual','year'=>'Anual',''=>'General'],null,['class'=>'form-control']) !!}
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary">ver</button>
+						</div>
+					{{ Form::close() }}
+				</div>
+			</div>
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					Lista de Exportaciones
 					@can('graphics.salesgraphics')

@@ -25,9 +25,12 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sales=Sale::orderBy('id', 'DESC')->paginate(20);
+        $date=$request->get('date');
+        $sales=Sale::orderBy('id', 'DESC')
+        ->date($date)
+        ->paginate(20);
         return view('admin.sale.index', compact('sales'));
     }
 
