@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Type;
 use App\Kardex;
+
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;

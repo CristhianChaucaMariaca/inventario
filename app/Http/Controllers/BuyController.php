@@ -21,9 +21,12 @@ class BuyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $buys=Buy::orderBy('id', 'DESC')->paginate(20);
+        $date=$request->get('date');
+        $buys=Buy::orderBy('id', 'DESC')
+            ->date($date)
+            ->paginate(20);
         return view('admin.buy.index', compact('buys'));
     }
 
