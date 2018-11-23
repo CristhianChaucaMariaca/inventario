@@ -450,15 +450,69 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
+            'name'          =>'Grafico Stocks del dia',
+            'slug'          => 'graphics.stock_today',
+            'description'   => 'Muestra el grafico del stock de los productos del dia',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico Stocks del mes',
+            'slug'          => 'graphics.stock_month',
+            'description'   => 'Muestra el grafico del stock de los productos del mes',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico Stocks del año',
+            'slug'          => 'graphics.stock_year',
+            'description'   => 'Muestra el grafico del stock de los productos del año',
+        ]);
+
+        Permission::create([
             'name'          =>'Grafico general de compras',
             'slug'          => 'graphics.buysgraphics',
             'description'   => 'Muestra un gráfico de las compras en general de todo el historial de registros',
         ]);
 
         Permission::create([
+            'name'          =>'Grafico de compras del dia',
+            'slug'          => 'graphics.buy_today',
+            'description'   => 'Muestra un gráfico de las compras del dia',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico de compras del mes',
+            'slug'          => 'graphics.buy_month',
+            'description'   => 'Muestra un gráfico de las compras del mes',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico de compras del año',
+            'slug'          => 'graphics.buy_year',
+            'description'   => 'Muestra un gráfico de las compras del año',
+        ]);
+
+        Permission::create([
             'name'          =>'Grafico general de exportaciones',
             'slug'          => 'graphics.salesgraphics',
             'description'   => 'Muestra un grafico de las exportaciones en general de todo el historial de registros',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico de exportaciones del dia',
+            'slug'          => 'graphics.sales_today',
+            'description'   => 'Muestra un grafico de las exportaciones del dia',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico de exportaciones del mes',
+            'slug'          => 'graphics.sales_month',
+            'description'   => 'Muestra un grafico de las exportaciones del mes',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico de exportaciones del año',
+            'slug'          => 'graphics.sales_year',
+            'description'   => 'Muestra un grafico de las exportaciones del año',
         ]);
     }
 }
