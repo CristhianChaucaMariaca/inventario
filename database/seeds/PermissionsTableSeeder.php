@@ -474,6 +474,12 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
+            'name'          =>'Grafico de compras avanzado',
+            'slug'          => 'graphics.buy_config',
+            'description'   => 'Muestra un gráfico de las compras con personalización de producto y fecha por mes,dia,año',
+        ]);
+
+        Permission::create([
             'name'          =>'Grafico de compras del dia',
             'slug'          => 'graphics.buy_today',
             'description'   => 'Muestra un gráfico de las compras del dia',
@@ -495,6 +501,12 @@ class PermissionsTableSeeder extends Seeder
             'name'          =>'Grafico general de exportaciones',
             'slug'          => 'graphics.salesgraphics',
             'description'   => 'Muestra un grafico de las exportaciones en general de todo el historial de registros',
+        ]);
+
+        Permission::create([
+            'name'          =>'Grafico de exportaciones avanzado',
+            'slug'          => 'graphics.sales_config',
+            'description'   => 'Muestra un grafico de las exportaciones con personalizacion de producto dia,mes,año',
         ]);
 
         Permission::create([

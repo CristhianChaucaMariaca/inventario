@@ -367,7 +367,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('stoksgraphics','GraphicController@stoksgraphics')->name('stoksgraphics')
 		->middleware('permission:graphics.stoksgraphics');
-		
+
 	Route::get('stock_today','GraphicController@stock_today')->name('stock_today')
 		->middleware('permission:graphics.stock_today');
 
@@ -381,6 +381,9 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('buysgraphics','GraphicController@buysgraphics')->name('buysgraphics')
 		->middleware('permission:graphics.buysgraphics');
 
+	Route::get('buy_config','GraphicController@buy_config')->name('buy_config')
+		->middleware('permission:graphics.buy_config');
+	
 	Route::get('buy_today','GraphicController@buy_today')->name('buy_today')
 		->middleware('permission:graphics.buy_today');
 
@@ -392,6 +395,9 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('salesgraphics','GraphicController@salesgraphics')->name('salesgraphics')
 		->middleware('permission:graphics.salesgraphics');
+
+	Route::get('sales_config','GraphicController@sales_config')->name('sales_config')
+		->middleware('permission:graphics.sales_config');
 
 	Route::get('sales_today','GraphicController@sales_today')->name('sales_today')
 		->middleware('permission:graphics.sales_today');

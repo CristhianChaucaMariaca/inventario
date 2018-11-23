@@ -45,7 +45,7 @@ class Buy extends Model
     public function scopeProduct($query,$pro)
     {
         if ($pro) {
-            return $query->where('product_id','=',$pro);
+            return $query->where('buys.product_id','=',$pro);
         }
     }
 }

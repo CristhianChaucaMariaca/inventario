@@ -67,6 +67,48 @@
 								@endcan
 							</tr>
 							@endcan
+							@can('graphics.buy_config')
+							<tr>
+								<td>Grafico avanzado de compras</td>
+									<td colspan="4">
+									{{ Form::open(['route'=>'buy_config','method'=>'GET','class'=>'form-inline pull-right']) }}
+											<div class="form-group">
+												<div class="form-group">
+												{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
+											</div>
+										
+											<div class="form-group">
+												{!! Form::select('date',['today'=>'Hoy','month'=>'Mensual','year'=>'Anual',''=>'General'],null,['class'=>'form-control']) !!}
+											</div>
+										
+											<div class="form-group">
+												<button class="btn btn-primary">ver</button>
+											</div>
+									{{ Form::close() }}
+									</td>
+							</tr>
+							@endcan
+							@can('graphics.sales_config')
+							<tr>
+								<td>Grafico avanzado de ventas</td>
+									<td colspan="4">
+									{{ Form::open(['route'=>'sales_config','method'=>'GET','class'=>'form-inline pull-right']) }}
+											<div class="form-group">
+												<div class="form-group">
+												{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
+											</div>
+										
+											<div class="form-group">
+												{!! Form::select('date',['today'=>'Hoy','month'=>'Mensual','year'=>'Anual',''=>'General'],null,['class'=>'form-control']) !!}
+											</div>
+										
+											<div class="form-group">
+												<button class="btn btn-primary">ver</button>
+											</div>
+									{{ Form::close() }}
+									</td>
+							</tr>
+							@endcan
 						</tbody>
 					</table>
 				</div>

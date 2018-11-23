@@ -15,4 +15,5 @@ class Buys extends Chart
     {
         parent::__construct();
     }
+
 }

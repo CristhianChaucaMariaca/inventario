@@ -5,7 +5,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-body">
-						{{ Form::open(['route'=>'sales.index','method'=>'GET','class'=>'form-inline pull-right']) }}
+					{{ Form::open(['route'=>'sales.index','method'=>'GET','class'=>'form-inline pull-right']) }}
 						<div class="form-group">
 							<div class="form-group">
 							{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
