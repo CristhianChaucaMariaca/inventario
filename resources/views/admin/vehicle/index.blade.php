@@ -68,6 +68,7 @@
 							@endforeach
 						</tbody>
 					</table>
+					{{ $vehicles->render() }}
 				</div>
 			</div>
 		</div>
