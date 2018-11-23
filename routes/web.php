@@ -367,10 +367,38 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('stoksgraphics','GraphicController@stoksgraphics')->name('stoksgraphics')
 		->middleware('permission:graphics.stoksgraphics');
+		
+	Route::get('stock_today','GraphicController@stock_today')->name('stock_today')
+		->middleware('permission:graphics.stock_today');
+
+	Route::get('stock_month','GraphicController@stock_month')->name('stock_month')
+		->middleware('permission:graphics.stock_month');
+
+	Route::get('stock_year','GraphicController@stock_year')->name('stock_year')
+		->middleware('permission:graphics.stock_year');
+
 
 	Route::get('buysgraphics','GraphicController@buysgraphics')->name('buysgraphics')
 		->middleware('permission:graphics.buysgraphics');
 
+	Route::get('buy_today','GraphicController@buy_today')->name('buy_today')
+		->middleware('permission:graphics.buy_today');
+
+	Route::get('buy_month','GraphicController@buy_month')->name('buy_month')
+		->middleware('permission:graphics.buy_month');
+
+	Route::get('buy_year','GraphicController@buy_year')->name('buy_year')
+		->middleware('permission:graphics.buy_year');
+
 	Route::get('salesgraphics','GraphicController@salesgraphics')->name('salesgraphics')
 		->middleware('permission:graphics.salesgraphics');
+
+	Route::get('sales_today','GraphicController@sales_today')->name('sales_today')
+		->middleware('permission:graphics.sales_today');
+
+	Route::get('sales_month','GraphicController@sales_month')->name('sales_month')
+		->middleware('permission:graphics.sales_month');
+
+	Route::get('sales_year','GraphicController@sales_year')->name('sales_year')
+		->middleware('permission:graphics.sales_year');
 });
