@@ -75,7 +75,7 @@
 									<td><a href="{{ route('kardex', $product->id) }}" class="btn btn-sm btn-default"><span class="icon-file-text"></span></a></td>
 									<td>
 										@can('buys.create')
-										<a href="{{ route('buys.create') }}" class="btn btn-sm btn-default">iniciar stock</a>
+										<a href="{{ route('buys.create') }}" class="btn btn-sm btn-default">Realizar Compra</a>
 										@endcan
 									</td>
 								</tr>
