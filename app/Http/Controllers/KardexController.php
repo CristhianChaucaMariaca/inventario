@@ -8,6 +8,7 @@ use App\Buy;
 use App\Sale;
 use App\Out;
 use App\In;
+use App\Product;
 
 
 use Illuminate\Support\Facades\DB;
@@ -25,10 +26,15 @@ class KardexController extends Controller
     public function index(Request $request)
     {
         $date=$request->get('date');
+        $pro=$request->get('product');
+
         $kardexs=Kardex::orderBy('created_at', 'DESC')
+            ->product($pro)
             ->date($date)
             ->paginate(20);
-        return view('admin.kardex.index', compact('kardexs'));
+
+        $products=Product::orderBy('name','DESC')->pluck('name','id');
+        return view('admin.kardex.index', compact('kardexs','products'));
     }
 
     public function product($product_id){

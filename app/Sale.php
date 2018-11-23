@@ -47,4 +47,11 @@ class Sale extends Model
         }elseif ($date=='') {
         }
     }
+
+    public function scopeProduct($query,$pro)
+    {
+        if ($pro) {
+            return $query->where('product_id','=',$pro);
+        }
+    }
 }

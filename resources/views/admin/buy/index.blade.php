@@ -8,6 +8,10 @@
 				<div class="panel-body">
 						{{ Form::open(['route'=>'buys.index','method'=>'GET','class'=>'form-inline pull-right']) }}
 						<div class="form-group">
+							<div class="form-group">
+							{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
+						</div>
+						<div class="form-group">
 							{!! Form::select('date',['today'=>'Hoy','month'=>'Mensual','year'=>'Anual',''=>'General'],null,['class'=>'form-control']) !!}
 						</div>
 						<div class="form-group">

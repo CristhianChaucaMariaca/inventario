@@ -28,10 +28,16 @@ class SaleController extends Controller
     public function index(Request $request)
     {
         $date=$request->get('date');
+        $pro=$request->get('product');
+
         $sales=Sale::orderBy('id', 'DESC')
+        ->product($pro)
         ->date($date)
         ->paginate(20);
-        return view('admin.sale.index', compact('sales'));
+
+        $products=Product::orderBy('name','DESC')->pluck('name','id');
+
+        return view('admin.sale.index', compact('sales','products'));
     }
 
     /**

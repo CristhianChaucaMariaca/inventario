@@ -24,10 +24,15 @@ class BuyController extends Controller
     public function index(Request $request)
     {
         $date=$request->get('date');
+        $pro=$request->get('product');
+
         $buys=Buy::orderBy('id', 'DESC')
+            ->product($pro)
             ->date($date)
             ->paginate(20);
-        return view('admin.buy.index', compact('buys'));
+
+        $products=Product::orderBy('name','DESC')->pluck('name','id');
+        return view('admin.buy.index', compact('buys','products'));
     }
 
     /**
