@@ -39,10 +39,15 @@
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+								$c=1;
+							?>
 							@foreach($kardexs as $kardex)
 								<tr>
 									<td>
-										{{ $kardex->id}}
+										<?php
+											echo $c++;
+										?>
 									</td>
 										<td>
 											<a href="{{ route('kardex', $kardex->product_id) }}">{{ $kardex->product->name }}</a>
