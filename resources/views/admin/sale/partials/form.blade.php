@@ -19,11 +19,16 @@
 	{{ Form::label('unitary', 'Costo unitario') }}
 	{{ Form::number('unitary', null, ['class'=>'form-control', 'placeholder'=>'Unitario', 'id'=>'unitary']) }}
 </div>
-<div class="form-group">
-	{{ Form::label('status', 'Estado') }}
-	<label>{{ Form::radio('status', 'PENDING') }} Pendiente</label>
-	<label>{{ Form::radio('status', 'FINISHED') }} Finalizado</label>
-</div>
+
+	<div class="form-group">
+		{{ Form::label('status', 'Estado') }}
+		@if(request()->is('sales/*/edit' && $sale->status=='FINISHED' ))
+			<label>{{ Form::radio('status', 'PENDING',null,['disabled']) }} Pendiente</label>
+		@else
+			<label>{{ Form::radio('status', 'PENDING') }} Pendiente</label>
+		@endif
+		<label>{{ Form::radio('status', 'FINISHED',true)}} Finalizado</label>
+	</div>
 <div class="form-group">
 	{{ Form::submit('Guardar', ['class'=>'btn btn-sm btn-primary']) }}
 </div>

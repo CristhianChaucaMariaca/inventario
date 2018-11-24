@@ -17,8 +17,12 @@
 </div>
 <div class="form-group">
 	{{ Form::label('status', 'Estado') }}
-	<label>{{ Form::radio('status', 'PENDING') }} Pendiente</label>
-	<label>{{ Form::radio('status', 'FINISHED') }} Finalizado</label>
+	@if(request()->is('buys/*/edit') && $buy->status=='FINISHED')
+		<label>{{ Form::radio('status', 'PENDING',null,['disabled']) }} Pendiente</label>
+	@else
+		<label>{{ Form::radio('status', 'PENDING') }} Pendiente</label>
+	@endif
+	<label>{{ Form::radio('status', 'FINISHED',true) }} Finalizado</label>
 </div>
 <div class="form-group">
 	{{ Form::submit('Guardar', ['class'=>'btn btn-sm btn-primary']) }}
