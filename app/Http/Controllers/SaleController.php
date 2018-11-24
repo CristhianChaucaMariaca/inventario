@@ -62,21 +62,26 @@ class SaleController extends Controller
     public function store(SaleStoreRequest $request)
     {
         $id=Kardex::where('product_id',$request->product_id)->max('id');
-        $k=Kardex::find($id);
-        if ($request->cuantity > $k->balance) {
-            return back()->with('danger','La cantidad solicitada no puede ser mayor al stock en almacenes');
-        }elseif (($k->balance-$request->cuantity)<$k->product->min ) {
-            return back()->with('danger','La cantidad solicitada no puede dejar un stock menor al minimo');
+        if (Kardex::find($id)) {
+            $k=Kardex::find($id);
+            if ($request->cuantity > $k->balance) {
+                return back()->with('danger','La cantidad solicitada no puede ser mayor al stock en almacenes');
+            }elseif (($k->balance-$request->cuantity)<$k->product->min ) {
+                return back()->with('danger','La cantidad solicitada no puede dejar un stock menor al minimo');
+            }
+            $sale=Sale::create($request->all());
+            if ($sale->status == 'FINISHED') {
+                return redirect()->route('registroVenta', $sale);
+            }
+            if (auth()->user()->can('sales.edit')) {
+                return redirect()->route('sales.edit', compact('sale'))
+                ->with('info','Compra de producto añadido correctamente');
+            }
+            return back()->with('info','Exportado correctamente');    
+        }else{
+            return back()->with('info','El producto no cuenta con stock, debe realizar un compra');
         }
-        $sale=Sale::create($request->all());
-        if ($sale->status == 'FINISHED') {
-            return redirect()->route('registroVenta', $sale);
-        }
-        if (auth()->user()->can('sales.edit')) {
-            return redirect()->route('sales.edit', compact('sale'))
-            ->with('info','Compra de producto añadido correctamente');
-        }
-        return back()->with('info','Exportado correctamente');
+        
     }
 
     /**
