@@ -69,13 +69,16 @@ class SaleController extends Controller
             }elseif (($k->balance-$request->cuantity)<$k->product->min ) {
                 return back()->with('danger','La cantidad solicitada no puede dejar un stock menor al minimo');
             }
+            elseif ($request->cuantity < 1 ) {
+                return back()->with('danger','La cantidad solicitada debe ser mayor a 0');
+            }
             $sale=Sale::create($request->all());
             if ($sale->status == 'FINISHED') {
                 return redirect()->route('registroVenta', $sale);
             }
             if (auth()->user()->can('sales.edit')) {
                 return redirect()->route('sales.edit', compact('sale'))
-                ->with('info','Compra de producto añadido correctamente');
+                ->with('info','Exportación de producto añadido correctamente');
             }
             return back()->with('info','Exportado correctamente');    
         }else{
@@ -118,13 +121,27 @@ class SaleController extends Controller
      */
     public function update(SaleUpdateRequest $request, Sale $sale)
     {
-        $s=Sale::find($sale->id);
-        $s->fill($request->all())->save();
-        if ($s->status == 'FINISHED') {
-            return redirect()->route('registroVenta', $sale);
+        $id=Kardex::where('product_id',$request->product_id)->max('id');
+        if (Kardex::find($id)) {
+            $k=Kardex::find($id);
+            if ($request->cuantity > $k->balance) {
+                return back()->with('danger','La cantidad solicitada no puede ser mayor al stock en almacenes');
+            }elseif (($k->balance-$request->cuantity)<$k->product->min ) {
+                return back()->with('danger','La cantidad solicitada no puede dejar un stock menor al minimo');
+            }
+            elseif ($request->cuantity < 1 ) {
+                return back()->with('danger','La cantidad solicitada debe ser mayor a 0');
+            }
+            $s=Sale::find($sale->id);
+            $s->fill($request->all())->save();
+            if ($s->status == 'FINISHED') {
+                return redirect()->route('registroVenta', $sale);
+            }
+            return redirect()->route('sales.edit', compact('sale'))
+                    ->with('info', 'Modificado correctamente');
+        }else{
+            return back()->with('info','El producto no cuenta con stock, debe realizar un compra');
         }
-        return redirect()->route('sales.edit', compact('sale'))
-            ->with('info', 'Modificado correctamente');
     }
 
     /**

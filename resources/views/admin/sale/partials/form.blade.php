@@ -22,7 +22,7 @@
 
 	<div class="form-group">
 		{{ Form::label('status', 'Estado') }}
-		@if(request()->is('sales/*/edit' && $sale->status=='FINISHED' ))
+		@if(request()->is('sales/*/edit') && $sale->status=='FINISHED')
 			<label>{{ Form::radio('status', 'PENDING',null,['disabled']) }} Pendiente</label>
 		@else
 			<label>{{ Form::radio('status', 'PENDING') }} Pendiente</label>
