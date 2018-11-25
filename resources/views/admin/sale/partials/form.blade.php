@@ -1,15 +1,30 @@
 {{ Form::hidden('user_id', auth()->user()->id) }}
 <div class="form-group">
 	{{ Form::label('product_id', 'Seleciones el de producto') }}
-	{{ Form::select('product_id', $products, null, ['class'=>'form-control']) }}
+	@if($products->count())
+		{{ Form::select('product_id', $products, null, ['class'=>'form-control']) }}
+	@else
+		{{ Form::select('product_id', $products, null, ['class'=>'form-control','disabled']) }}
+		<span class="text-danger">Debe iniciar un producto para utilizar este campo</span>
+	@endif
 </div>
 <div class="form-group">
 	{{ Form::label('driver_id', 'Selecione su conductor') }}
-	{{ Form::select('driver_id', $drivers, null, ['class'=>'form-control']) }}
+	@if($drivers->count())
+		{{ Form::select('driver_id', $drivers, null, ['class'=>'form-control']) }}
+	@else
+		{{ Form::select('driver_id', $drivers, null, ['class'=>'form-control','disabled']) }}
+		<span class="text-danger">Debe iniciar un conductor para usar el campo</span>
+	@endif
 </div>
 <div class="form-group">
 	{{ Form::label('vehicle_id', 'Selecione su vehiculo') }}
-	{{ Form::select('vehicle_id', $vehicles, null, ['class'=>'form-control']) }}
+	@if($vehicles->count())
+		{{ Form::select('vehicle_id', $vehicles, null, ['class'=>'form-control']) }}
+	@else
+		{{ Form::select('vehicle_id', $vehicles, null, ['class'=>'form-control','disabled']) }}
+		<span class="text-danger">Debe iniciar un vehiculo para usar este campo</span>
+	@endif
 </div>
 <div class="form-group">
 	{{ Form::label('cuantity', 'Ingrese cantidad') }}

@@ -266,6 +266,9 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('kardexes', 'KardexController@index')->name('kardexes.index')
 		->middleware('permission:kardexes.index');
 
+	Route::get('stock', 'KardexController@stock')->name('kardexes.stock')
+		->middleware('permission:kardexes.stock');
+
 	Route::post('kardexes/store', 'KardexController@store')->name('kardexes.store')
 		->middleware('permission:kardexes.create');
 		

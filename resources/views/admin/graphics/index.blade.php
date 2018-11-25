@@ -5,7 +5,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="text-center">Lista de Graficos <span class="icon-file-pdf"></span></h3>
+					<h3 class="text-center">Lista de Graficos <span class="icon-stats-bars"></span></h3>
 				</div>
 				<div class="panel-body">
 					<table class="table-hover table table-striped">
@@ -71,7 +71,8 @@
 							<tr>
 								<td>Grafico avanzado de compras</td>
 									<td colspan="4">
-									{{ Form::open(['route'=>'buy_config','method'=>'GET','class'=>'form-inline pull-right']) }}
+									@if($products->count())
+										{{ Form::open(['route'=>'buy_config','method'=>'GET','class'=>'form-inline pull-right']) }}
 											<div class="form-group">
 												<div class="form-group">
 												{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
@@ -84,7 +85,10 @@
 											<div class="form-group">
 												<button class="btn btn-primary">ver</button>
 											</div>
-									{{ Form::close() }}
+										{{ Form::close() }}
+									@else
+										<span>Debe tener productos agregados</span>
+									@endif
 									</td>
 							</tr>
 							@endcan
@@ -92,7 +96,8 @@
 							<tr>
 								<td>Grafico avanzado de ventas</td>
 									<td colspan="4">
-									{{ Form::open(['route'=>'sales_config','method'=>'GET','class'=>'form-inline pull-right']) }}
+									@if($products->count())
+										{{ Form::open(['route'=>'sales_config','method'=>'GET','class'=>'form-inline pull-right']) }}
 											<div class="form-group">
 												<div class="form-group">
 												{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
@@ -105,7 +110,10 @@
 											<div class="form-group">
 												<button class="btn btn-primary">ver</button>
 											</div>
-									{{ Form::close() }}
+										{{ Form::close() }}
+									@else
+										<span>debe tener productos agregados</span>
+									@endif
 									</td>
 							</tr>
 							@endcan

@@ -8,7 +8,11 @@
 					{{ Form::open(['route'=>'sales.index','method'=>'GET','class'=>'form-inline pull-right']) }}
 						<div class="form-group">
 							<div class="form-group">
-							{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
+							@if($products->count())
+								{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
+							@else
+								{!! Form::select('product',$products,null,['class'=>'form-control','disabled']) !!}
+							@endif
 						</div>
 						<div class="form-group">
 							{!! Form::select('date',['today'=>'Hoy','month'=>'Mensual','year'=>'Anual',''=>'General'],null,['class'=>'form-control']) !!}

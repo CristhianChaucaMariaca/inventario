@@ -73,6 +73,9 @@
                         @can('kardexes.index')
                         <li class="nav-item {{ request()->is('kardexes') ? 'active' : '' }}"><a href="{{ route('kardexes.index') }}" class="nav-link">Kardex</a></li>
                         @endcan
+                        @can('kardexes.stock')
+                        <li class="nav-item {{ request()->is('stock') ? 'active' : '' }}"><a href="{{ route('kardexes.stock') }}" class="nav-link">Stock</a></li>
+                        @endcan
                         @can('reports.index')
                         <li class="nav-item {{ request()->is('reports') ? 'active' : '' }}"><a href="{{ route('reports') }}" class="nav-link"><span class="icon-file-pdf"></span></a></li>
                         @endcan

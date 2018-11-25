@@ -15,9 +15,9 @@ class UsersTableSeeder extends Seeder
         factory(App\User::class,10)->create();
 
         App\User::create([
-        	'name'=>'Cristhian',
-        	'email'=>'cristhian@gmail.com',
-        	'password'=>bcrypt('123'),
+        	'name'=>'admin',
+        	'email'=>'admin@admin.com',
+        	'password'=>bcrypt('admin'),
         ]);
         Role::create([
             'name'      =>'Admin',

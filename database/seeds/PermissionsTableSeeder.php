@@ -286,6 +286,11 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Listado de todos los kardex del sistema',
         ]);
         Permission::create([
+            'name'          => 'Navegar Stock',
+            'slug'          => 'kardexes.stock',
+            'description'   => 'Listado de todos los productos y su stock',
+        ]);
+        Permission::create([
             'name'          => 'Ver detalle de kardex',
             'slug'          => 'kardexes.show',
             'description'   => 'Ver en detalle cada kardex del sistema',

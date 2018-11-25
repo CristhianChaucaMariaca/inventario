@@ -12,7 +12,7 @@ class Kardex extends Model
     use ShinobiTrait;
     protected $fillable=
     [
-    	'user_id','product_id','sale_id','buy_id','balance','value','type',
+    	'user_id','product_id','sale_id','buy_id','balance','value','type','header',
     ];
 
     public function user(){

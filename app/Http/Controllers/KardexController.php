@@ -10,11 +10,12 @@ use App\Out;
 use App\In;
 use App\Product;
 
-
 use Illuminate\Support\Facades\DB;
+
+
 use App\Http\Controllers\Controller;
 
-use Barryvdh\DomPDF\Facade as PDF;
+//use Barryvdh\DomPDF\Facade as PDF;
 
 class KardexController extends Controller
 {
@@ -25,6 +26,9 @@ class KardexController extends Controller
      */
     public function index(Request $request)
     {
+        
+        $stocks=Kardex::where('header','=','HEADER')->get();
+        
         $date=$request->get('date');
         $pro=$request->get('product');
 
@@ -33,15 +37,33 @@ class KardexController extends Controller
             ->date($date)
             ->paginate(20);
 
-        $products=Product::orderBy('name','DESC')->pluck('name','id');
-        return view('admin.kardex.index', compact('kardexs','products'));
+        $products=Product::orderBy('name','DESC')
+        ->where('status','=','public')
+        ->pluck('name','id');
+        return view('admin.kardex.index', compact('kardexs','products','stocks'));
+    }
+    public function stock()
+    {
+        
+        $stocks=Kardex::where('header','=','HEADER')->get();
+
+        return view('admin.kardex.stock', compact('stocks'));
     }
 
-    public function product($product_id){
+    public function product(Request $request ,$product_id){
+
+        $stocks=Kardex::where('header','=','HEADER')->get();
+        
+        $date=$request->get('date');
+        $pro=$request->get('product');
+
         $kardexs=Kardex::orderBy('id', 'DESC')
             ->where('product_id', $product_id)
             ->paginate(20);
-        return view('admin.kardex.index', compact('kardexs'));
+
+        $products=Product::orderBy('name','DESC')->pluck('name','id');
+
+        return view('admin.kardex.index', compact('kardexs','products','stocks'));
     }
 
     /**
@@ -62,12 +84,19 @@ class KardexController extends Controller
      */
     public function store(Request $request)
     {
+
         $kardex=Kardex::create($request->all());
         return redirect()->route('kardexes.edit', compact('kardex'))
             ->with('info','Registrado en kardex correctamente');
     }
     public function registro_compra(Buy $buy)
     {
+
+        if (Kardex::where('product_id',$buy->product_id)->max('id')) {
+            $id=Kardex::where('product_id',$buy->product_id)->max('id');
+            $k=Kardex::find($id);
+            $k->update(['header'=>'TAIL']);
+        }
         //$id=DB::table('kardexes')->count()->where('product_id',$buy->product_id);
         
         if (Kardex::where('product_id',$buy->product_id)->max('id')) {
@@ -120,6 +149,11 @@ class KardexController extends Controller
     }
     public function registroVenta(Sale $sale)
     {
+
+        $id=Kardex::where('product_id',$sale->product_id)->max('id');
+        $k=Kardex::find($id);
+        $k->update(['header'=>'TAIL']);
+
         //$id=DB::table('kardexes')->count();
         $id=Kardex::where('product_id',$sale->product_id)->max('id');
         $k=Kardex::find($id);

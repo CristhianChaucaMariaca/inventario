@@ -3,13 +3,51 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="text-center">Stocks de los productos</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Producto</th>
+								<th>Stock Minimo</th>
+								<th>Stock</th>
+								<th colspan="3">Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							@foreach($stocks as $stock)
+								<tr>
+									<td>{{ $stock->product->name }}</td>
+									<td>{{ $stock->product->min }}</td>
+									<td>{{ $stock->balance }}</td>
+									<td width="10"><a href="{{ route('kardex', $stock->product_id) }}" class="btn btn-sm btn-default">Kardex del producto</a></td>
+									<td>
+									@can('buys.create')
+									<td width="10"><a href="{{ route('buys.create') }}" class="btn btn-primary">Comprar</a></td>
+									@endcan
+									@can('sales.create')
+									<td width="10"><a href="{{ route('sales.create') }}" class="btn btn-primary">Exportar</a></td>
+									@endcan
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
 			<div class="panel panel-default">
 				<div class="panel-body">
 						{{ Form::open(['route'=>'kardexes.index','method'=>'GET','class'=>'form-inline pull-right']) }}
 						<div class="form-group">
-							<div class="form-group">
-							{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
-						</div>
+							@if($products->count())
+								{!! Form::select('product',$products,null,['class'=>'form-control']) !!}
+							@else
+								{!! Form::select('product',$products,null,['class'=>'form-control','disabled']) !!}
+							@endif
 						</div>
 						<div class="form-group">
 							{!! Form::select('date',['today'=>'Hoy','month'=>'Mensual','year'=>'Anual',''=>'General'],null,['class'=>'form-control']) !!}
@@ -22,7 +60,7 @@
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="text-center">Lista de Movimientos</h3>
+					<h3 class="text-center">Lista de Movimientos (Kardex)</h3>
 					@can('graphics.stoksgraphics')
 						<a href="{{ route('stoksgraphics') }}" class="btn btn-default"><span class=" icon-stats-dots"></span></a>
 					@endcan

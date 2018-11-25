@@ -21,7 +21,7 @@
 
 <div class="form-group">
 	{{ Form::label('status', 'Estado del vehiculo') }}
-	<label>{{ Form::radio('status','FREE') }} LIBRE</label>
+	<label>{{ Form::radio('status','FREE',true) }} LIBRE</label>
 	<label>{{ Form::radio('status','OCCUPIED') }} OCUPADO</label>
 	<label>{{ Form::radio('status','OUT') }} FUERA DE SERVICIO</label>
 </div>

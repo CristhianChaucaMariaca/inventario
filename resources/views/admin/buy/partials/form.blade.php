@@ -1,11 +1,21 @@
 {{ Form::hidden('user_id', auth()->user()->id) }}
 <div class="form-group">
-	{{ Form::label('product_id', 'Seleciones el de producto') }}
-	{{ Form::select('product_id', $products, null, ['class'=>'form-control']) }}
+	{{ Form::label('product_id', 'Seleciones el producto') }}
+	@if($products->count())
+		{{ Form::select('product_id', $products, null, ['class'=>'form-control']) }}
+	@else
+		{{ Form::select('product_id', $products, null, ['class'=>'form-control','disabled']) }}
+		<span class="text-danger">Debe iniciar un producto para usar este campo</span>
+	@endif
 </div>
 <div class="form-group">
 	{{ Form::label('provider_id', 'Selecione su proveedor') }}
-	{{ Form::select('provider_id', $providers, null, ['class'=>'form-control']) }}
+	@if($providers->count())
+		{{ Form::select('provider_id', $providers, null, ['class'=>'form-control']) }}
+	@else
+		{{ Form::select('provider_id', $providers, null, ['class'=>'form-control','disabled']) }}
+		<span class="text-danger">Debe iniciar un proveedor para usar este campo</span>
+	@endif
 </div>
 <div class="form-group">
 	{{ Form::label('cuantity', 'Ingrese cantidad') }}

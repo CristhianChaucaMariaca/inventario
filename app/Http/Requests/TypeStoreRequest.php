@@ -25,6 +25,7 @@ class TypeStoreRequest extends FormRequest
     {
         return [
             'name'=>'string|required|unique:types,name',
+            'measure_id'=>'required',
         ];
     }
 }

@@ -1,6 +1,11 @@
 <div class="form-group">
 	{{ Form::label('type_id', 'Seleciones el tipo de producto') }}
-	{{ Form::select('type_id', $types, null, ['class'=>'form-control']) }}
+	@if($types->count())
+		{{ Form::select('type_id', $types, null, ['class'=>'form-control']) }}
+	@else
+		{{ Form::select('type_id', $types, null, ['class'=>'form-control','disabled']) }}
+		<span class="text-danger"> Para usar este campo debe iniciar un producto</span>
+	@endif
 </div>
 <div class="form-group">
 	{{ Form::label('name', 'Ingrese nombre') }}
@@ -12,7 +17,7 @@
 </div>
 <div class="form-group">
 	{{ Form::label('status', 'Estado') }}
-	<label>{{ Form::radio('status', 'PUBLIC') }} Publico</label>
+	<label>{{ Form::radio('status', 'PUBLIC',true) }} Publico</label>
 	<label>{{ Form::radio('status', 'PRIVATE') }} Privado</label>
 </div>
 <div class="form-group">
