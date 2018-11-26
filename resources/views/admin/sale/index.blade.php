@@ -97,11 +97,15 @@
 									</td>
 									<td width="10px">
 										@can('sales.destroy')
-										{!! Form::open(['route'=>['sales.destroy', $sale->id],'method'=>'DELETE']) !!}
-											<button class="btn btn-sm btn-danger">
-												<span class="icon-bin2"></span>
-											</button>
-										{!! Form::close() !!}
+										@if($sale->status == 'FINISHED')
+											<span class="text-danger">N/P</span>
+										@else
+											{!! Form::open(['route'=>['sales.destroy', $sale->id],'method'=>'DELETE']) !!}
+												<button class="btn btn-sm btn-danger">
+													<span class="icon-bin2"></span>
+												</button>
+											{!! Form::close() !!}
+										@endif
 										@endcan
 									</td>
 								</tr>
