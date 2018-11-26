@@ -74,7 +74,12 @@ class SaleController extends Controller
             }
             $sale=Sale::create($request->all());
             if ($sale->status == 'FINISHED') {
-                return redirect()->route('registroVenta', $sale);
+                if ($sale->codex) {
+                    return redirect()->route('registroVenta', $sale);
+                }
+                else{
+                    return back()->with('danger','para finalizar una exportación debe contar con un codigo de exportación');
+                }
             }
             if (auth()->user()->can('sales.edit')) {
                 return redirect()->route('sales.edit', compact('sale'))
@@ -133,12 +138,30 @@ class SaleController extends Controller
                 return back()->with('danger','La cantidad solicitada debe ser mayor a 0');
             }
             $s=Sale::find($sale->id);
-            $s->fill($request->all())->save();
-            if ($s->status == 'FINISHED') {
-                return redirect()->route('registroVenta', $sale);
+            if ($request->get('codex')) {
+                if ($request->status == 'FINISHED') {
+                    if ($request->codex) {
+                        $s->fill($request->all())->save();
+                        return redirect()->route('registroVenta', $sale);
+                    }
+                    else{
+                        return back()->with('danger','para finalizar una exportación debe contar con un codigo de exportación');
+                    }
+                }
+                else{
+                    return back()->with('danger','para finalizar una exportación debe colocar el estado en finalizado');
+                }
+            }
+            else{
+                if ($request->status == 'FINISHED') {
+                    return back()->with('danger','para finalizar una exportación debe contar con un codigo de exportación');
+                }elseif($request->status == 'PENDING')
+                {
+                    $s->fill($request->all())->save();
+                }
             }
             return redirect()->route('sales.edit', compact('sale'))
-                    ->with('info', 'Modificado correctamente');
+                    ->with('info', 'Modificado correctamente MALO MUY MALO');
         }else{
             return back()->with('info','El producto no cuenta con stock, debe realizar un compra');
         }

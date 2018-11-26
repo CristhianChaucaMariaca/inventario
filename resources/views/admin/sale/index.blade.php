@@ -43,6 +43,7 @@
 								<th>Costo</th>
 								<th>Unitario</th>
 								<th>Est. Ganancia</th>
+								<th>Cod. Export.</th>
 								<th>Estado</th>
 								<th colspan="3">&nbsp;</th>
 							</tr>
@@ -60,6 +61,7 @@
 									</td>
 									<td>{{ $sale->product->name }} ({{ $sale->product->type->name }})</td>
 									<td>{{ $sale->cuantity }}</td>
+									
 									<td>{{ $sale->unitary*$sale->cuantity }}</td>
 									<td>{{ $sale->unitary }}</td>
 									<td>
@@ -69,6 +71,11 @@
 											<span class="icon-blocked text-danger"></span>
 										@endif
 									</td>
+									@if($sale->codex)
+										<td>{{ $sale->codex }}</td>
+									@else
+										<td><span class="text-danger">Sin codigo</span></td>
+									@endif
 									@if($sale->status == 'PENDING')
 										<td>
 											Pendiente

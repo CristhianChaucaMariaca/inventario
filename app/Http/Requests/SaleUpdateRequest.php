@@ -30,6 +30,7 @@ class SaleUpdateRequest extends FormRequest
             'cuantity'  => 'required',
             'unitary'   => 'required',
             'status'    => 'required',
+            'codex'       =>'nullable|alpha_num',
         ];
     }
 }

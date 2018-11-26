@@ -35,6 +35,11 @@
 	{{ Form::number('unitary', null, ['class'=>'form-control', 'placeholder'=>'Unitario', 'id'=>'unitary']) }}
 </div>
 
+<div class="form-group">
+	{{ Form::label('codex', 'Codigo de exportación') }}
+	{{ Form::text('codex', null, ['class'=>'form-control', 'placeholder'=>'Codigo de exportación', 'id'=>'codex']) }}
+</div>
+
 	<div class="form-group">
 		{{ Form::label('status', 'Estado') }}
 		@if(request()->is('sales/*/edit') && $sale->status=='FINISHED')

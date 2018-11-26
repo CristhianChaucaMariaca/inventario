@@ -46,6 +46,14 @@
 						<a href="{{ route('vehicles.show', $sale->vehicle) }}" class="btn btn-default"><span class="icon-eye-plus"></span></a>
 						@endcan
 					</p>
+					<p>
+						<strong>Codigo de exportación</strong>
+						@if($sale->codex)
+							{{ $sale->codex }}</td>
+						@else
+							<span class="text-danger">Sin codigo</span>
+						@endif
+					</p>
 					<p><strong>Estado: </strong>
 						@if($sale->status == 'PENDING')
 							Pendiente

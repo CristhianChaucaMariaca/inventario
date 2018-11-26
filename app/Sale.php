@@ -11,7 +11,7 @@ class Sale extends Model
 {
     use ShinobiTrait;
     protected $fillable=[
-    	'user_id','driver_id','vehicle_id','product_id','cuantity','unitary','status'
+    	'user_id','driver_id','vehicle_id','product_id','cuantity','unitary','status','codex',
     ];
     public function driver(){
     	return $this->belongsTo(Driver::class);

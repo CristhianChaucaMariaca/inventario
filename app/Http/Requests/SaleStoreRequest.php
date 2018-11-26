@@ -30,6 +30,7 @@ class SaleStoreRequest extends FormRequest
             'cuantity'  => 'required|numeric|min:1|max:999999',
             'unitary'   => 'required|numeric|min:0|max:99999',
             'status'    => 'required',
+            'codex'     =>  'nullable|alpha_num',
         ];
     }
 }
